@@ -1,0 +1,338 @@
+---
+import "../styles/tokens.css";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const githubOrg = "https://github.com/data-privacy-stack";
+const presidioDocs = "https://presidio.dataprivacystack.org";
+const presidioRepo = "https://github.com/data-privacy-stack/presidio";
+
+const principles = [
+  {
+    title: "Open source",
+    body: "Permissively licensed, community-driven, and built in the open.",
+  },
+  {
+    title: "Privacy by design",
+    body: "Detection and anonymization are first-class, not afterthoughts.",
+  },
+  {
+    title: "Composable",
+    body: "Independent building blocks you can adopt one piece at a time.",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Privacy Stack — open-source building blocks for data privacy</title>
+    <meta
+      name="description"
+      content="Open-source building blocks for detecting, anonymizing, and protecting sensitive data. Home of Presidio."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="Data Privacy Stack" />
+    <meta
+      property="og:description"
+      content="Open-source building blocks for detecting, anonymizing, and protecting sensitive data."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dataprivacystack.org" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Data Privacy Stack
+      </a>
+      <nav>
+        <a href="/projects/">Projects</a>
+        <a href="/about/">About</a>
+        <a href="/community/contributing/">Community</a>
+        <a href={githubOrg}>GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Open-source building blocks for data privacy</h1>
+        <p class="tagline">
+          Tools to detect, anonymize, and protect sensitive data — built in the
+          open and designed to compose.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href={presidioDocs}>Explore Presidio</a>
+          <a class="btn" href={githubOrg}>View on GitHub</a>
+        </div>
+      </section>
+
+      <section class="band">
+        <h2>What is the Data Privacy Stack?</h2>
+        <p class="lead">
+          The Data Privacy Stack is a community-led home for open-source projects
+          that help engineers handle sensitive data responsibly — starting with
+          <strong>Presidio</strong> for PII detection and anonymization, with
+          room to grow.
+        </p>
+      </section>
+
+      <section class="projects">
+        <h2>Projects</h2>
+        <div class="grid">
+          <ProjectCard
+            name="Presidio"
+            tagline="Detect and anonymize PII in text, images, and structured data."
+            status="Active"
+            docsHref={presidioDocs}
+            githubHref={presidioRepo}
+            pypiHref="https://pypi.org/project/presidio-analyzer/"
+          />
+          <article class="card placeholder">
+            <h3>More coming</h3>
+            <p>
+              The stack is growing. Want to propose or contribute a project?
+              <a href="/community/contributing/">Get involved →</a>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="principles">
+        {
+          principles.map((p) => (
+            <div class="principle">
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </div>
+          ))
+        }
+      </section>
+
+      <section class="band cta-band">
+        <h2>Build privacy in, from the start</h2>
+        <p class="lead">
+          Read the docs, file an issue, or open a pull request — contributions
+          of all sizes are welcome.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href={presidioDocs}>Read the docs</a>
+          <a class="btn" href="/community/contributing/">Contribute</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Data Privacy Stack</strong>
+        <p>Open-source building blocks for data privacy.</p>
+      </div>
+      <nav>
+        <a href="/projects/">Projects</a>
+        <a href="/about/">About</a>
+        <a href="/community/contributing/">Contributing</a>
+        <a href="/community/governance/">Governance</a>
+        <a href={githubOrg}>GitHub</a>
+      </nav>
+    </footer>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: var(--dps-font);
+        color: var(--dps-ink);
+        background: var(--dps-gradient);
+      }
+      a {
+        color: var(--dps-teal-dark);
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.1rem clamp(1rem, 5vw, 4rem);
+        flex-wrap: wrap;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        color: var(--dps-ink);
+      }
+      .brand-mark {
+        width: 18px;
+        height: 18px;
+        border-radius: 5px;
+        background: linear-gradient(140deg, var(--dps-teal), #9bc7d0);
+      }
+      .topbar nav {
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+      }
+      .topbar nav a {
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--dps-muted);
+      }
+      .topbar nav a:hover {
+        color: var(--dps-teal-dark);
+      }
+      main {
+        width: min(1040px, 92vw);
+        margin: 0 auto;
+      }
+      .hero {
+        text-align: center;
+        padding: clamp(3rem, 8vw, 6rem) 1rem 2.5rem;
+      }
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        line-height: 1.1;
+      }
+      .tagline {
+        margin: 0 auto;
+        max-width: 620px;
+        font-size: clamp(1.05rem, 2vw, 1.3rem);
+        line-height: 1.6;
+        color: var(--dps-muted);
+      }
+      .cta {
+        margin-top: 1.8rem;
+        display: flex;
+        gap: 0.9rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-block;
+        padding: 0.7rem 1.4rem;
+        border-radius: 999px;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1.5px solid var(--dps-teal);
+        color: var(--dps-teal-dark);
+        background: transparent;
+        transition: transform 0.08s ease, box-shadow 0.15s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(31, 122, 140, 0.18);
+      }
+      .btn.primary {
+        background: var(--dps-teal);
+        color: #fff;
+        border-color: var(--dps-teal);
+      }
+      .band {
+        text-align: center;
+        padding: 2.5rem 1rem;
+      }
+      .lead {
+        margin: 0 auto;
+        max-width: 680px;
+        font-size: 1.1rem;
+        line-height: 1.65;
+        color: var(--dps-muted);
+      }
+      h2 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin: 0 0 1rem;
+      }
+      .projects {
+        padding: 1.5rem 0 2rem;
+        text-align: center;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1rem;
+      }
+      .card.placeholder {
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px dashed #b4cdd2;
+        border-radius: var(--dps-radius);
+        padding: 1.5rem;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .card.placeholder h3 {
+        margin: 0;
+        color: var(--dps-ink);
+      }
+      .card.placeholder p {
+        margin: 0;
+        color: var(--dps-muted);
+        line-height: 1.55;
+      }
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+        padding: 2rem 0;
+      }
+      .principle {
+        background: var(--dps-card);
+        border-radius: var(--dps-radius);
+        padding: 1.4rem;
+        box-shadow: var(--dps-shadow);
+        text-align: left;
+      }
+      .principle h3 {
+        margin: 0 0 0.4rem;
+        color: var(--dps-teal-dark);
+      }
+      .principle p {
+        margin: 0;
+        color: var(--dps-muted);
+        line-height: 1.55;
+      }
+      .cta-band {
+        margin: 1rem 0 3rem;
+        background: var(--dps-card);
+        border-radius: var(--dps-radius);
+        box-shadow: var(--dps-shadow);
+        padding: 2.5rem 1.5rem;
+      }
+      .site-footer {
+        border-top: 1px solid #cadde1;
+        margin-top: 2rem;
+        padding: 2rem clamp(1rem, 5vw, 4rem);
+        display: flex;
+        justify-content: space-between;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        color: var(--dps-muted);
+      }
+      .site-footer p {
+        margin: 0.3rem 0 0;
+      }
+      .site-footer nav {
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      .site-footer nav a {
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--dps-muted);
+      }
+      .site-footer nav a:hover {
+        color: var(--dps-teal-dark);
+      }
+    </style>
+  </body>
+</html>
