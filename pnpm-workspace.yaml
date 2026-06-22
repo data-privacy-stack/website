@@ -1,0 +1,7 @@
+# pnpm 11+ reads project settings from this file.
+# Allow native dependencies to run their build scripts so `pnpm install`
+# exits cleanly (otherwise it returns non-zero and trips Astro's pre-build
+# dependency check). Only affects local pnpm users; CI uses npm.
+allowBuilds:
+  esbuild: true
+  sharp: true

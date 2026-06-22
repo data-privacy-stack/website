@@ -1,6 +1,9 @@
 ---
 import "../styles/tokens.css";
+import { Image } from "astro:assets";
 import ProjectCard from "../components/ProjectCard.astro";
+import logo from "../assets/dps-logo.png";
+import mark from "../assets/dps-mark.png";
 
 const githubOrg = "https://github.com/data-privacy-stack";
 const presidioDocs = "https://presidio.dataprivacystack.org";
@@ -8,12 +11,12 @@ const presidioRepo = "https://github.com/data-privacy-stack/presidio";
 
 const principles = [
   {
-    title: "Open source",
-    body: "Permissively licensed, community-driven, and built in the open.",
+    title: "Open",
+    body: "Permissively licensed, community-driven, and developed in the open.",
   },
   {
-    title: "Privacy by design",
-    body: "Detection and anonymization are first-class, not afterthoughts.",
+    title: "Transparent",
+    body: "Clear about what's detected, how, and why — no black boxes.",
   },
   {
     title: "Composable",
@@ -27,16 +30,16 @@ const principles = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Privacy Stack — open-source building blocks for data privacy</title>
+    <title>Data Privacy Stack — open, transparent tools for private data handling</title>
     <meta
       name="description"
-      content="Open-source building blocks for detecting, anonymizing, and protecting sensitive data. Home of Presidio."
+      content="Open, transparent tools for private data handling. From the authors of Presidio."
     />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
     <meta property="og:title" content="Data Privacy Stack" />
     <meta
       property="og:description"
-      content="Open-source building blocks for detecting, anonymizing, and protecting sensitive data."
+      content="Open, transparent tools for private data handling. From the authors of Presidio."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dataprivacystack.org" />
@@ -44,24 +47,31 @@ const principles = [
   <body>
     <header class="topbar">
       <a class="brand" href="/">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <Image class="brand-mark" src={mark} alt="" width={28} height={28} aria-hidden="true" />
         Data Privacy Stack
       </a>
       <nav>
         <a href="/projects/">Projects</a>
+        <a href="/blog/">Blog</a>
         <a href="/about/">About</a>
         <a href="/community/contributing/">Community</a>
+        <a href="/community/governance/">Governance</a>
         <a href={githubOrg}>GitHub</a>
       </nav>
     </header>
 
     <main>
       <section class="hero">
-        <h1>Open-source building blocks for data privacy</h1>
-        <p class="tagline">
-          Tools to detect, anonymize, and protect sensitive data — built in the
-          open and designed to compose.
-        </p>
+        <Image
+          class="hero-logo"
+          src={logo}
+          alt="Data Privacy Stack"
+          widths={[400, 600, 900]}
+          sizes="(max-width: 640px) 90vw, 560px"
+          loading="eager"
+        />
+        <p class="from">From the authors of Presidio</p>
+        <h1>Open, transparent tools for private data handling</h1>
         <div class="cta">
           <a class="btn primary" href={presidioDocs}>Explore Presidio</a>
           <a class="btn" href={githubOrg}>View on GitHub</a>
@@ -71,10 +81,10 @@ const principles = [
       <section class="band">
         <h2>What is the Data Privacy Stack?</h2>
         <p class="lead">
-          The Data Privacy Stack is a community-led home for open-source projects
-          that help engineers handle sensitive data responsibly — starting with
-          <strong>Presidio</strong> for PII detection and anonymization, with
-          room to grow.
+          The Data Privacy Stack is a community-led home for open, transparent
+          tools that help engineers handle private data responsibly — starting
+          with <strong>Presidio</strong> for PII detection and anonymization,
+          with room to grow.
         </p>
       </section>
 
@@ -110,6 +120,14 @@ const principles = [
         }
       </section>
 
+      <section class="band">
+        <h2>From the blog</h2>
+        <p class="lead">
+          Announcements, releases, and notes from the community.
+        </p>
+        <p class="blog-link"><a href="/blog/">Read the blog →</a></p>
+      </section>
+
       <section class="band cta-band">
         <h2>Build privacy in, from the start</h2>
         <p class="lead">
@@ -126,10 +144,11 @@ const principles = [
     <footer class="site-footer">
       <div>
         <strong>Data Privacy Stack</strong>
-        <p>Open-source building blocks for data privacy.</p>
+        <p>Open, transparent tools for private data handling.</p>
       </div>
       <nav>
         <a href="/projects/">Projects</a>
+        <a href="/blog/">Blog</a>
         <a href="/about/">About</a>
         <a href="/community/contributing/">Contributing</a>
         <a href="/community/governance/">Governance</a>
@@ -168,10 +187,10 @@ const principles = [
         color: var(--dps-ink);
       }
       .brand-mark {
-        width: 18px;
-        height: 18px;
-        border-radius: 5px;
-        background: linear-gradient(140deg, var(--dps-teal), #9bc7d0);
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: block;
       }
       .topbar nav {
         display: flex;
@@ -192,19 +211,29 @@ const principles = [
       }
       .hero {
         text-align: center;
-        padding: clamp(3rem, 8vw, 6rem) 1rem 2.5rem;
+        padding: clamp(2rem, 6vw, 4rem) 1rem 2.5rem;
+      }
+      .hero-logo {
+        width: min(560px, 90vw);
+        height: auto;
+        /* No frame/shadow: the page background matches the image background,
+           so the artwork blends seamlessly into the hero. */
+        margin-bottom: 1.6rem;
+      }
+      .from {
+        margin: 0 0 0.6rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--dps-teal-dark);
       }
       h1 {
         margin: 0 0 1rem;
-        font-size: clamp(2rem, 5vw, 3.4rem);
-        line-height: 1.1;
-      }
-      .tagline {
-        margin: 0 auto;
-        max-width: 620px;
-        font-size: clamp(1.05rem, 2vw, 1.3rem);
-        line-height: 1.6;
-        color: var(--dps-muted);
+        font-size: clamp(1.8rem, 4.5vw, 3rem);
+        line-height: 1.15;
+        max-width: 760px;
+        margin-inline: auto;
       }
       .cta {
         margin-top: 1.8rem;
@@ -243,6 +272,17 @@ const principles = [
         font-size: 1.1rem;
         line-height: 1.65;
         color: var(--dps-muted);
+      }
+      .blog-link {
+        margin: 1rem 0 0;
+        font-weight: 600;
+      }
+      .blog-link a {
+        color: var(--dps-teal);
+        text-decoration: none;
+      }
+      .blog-link a:hover {
+        text-decoration: underline;
       }
       h2 {
         font-size: clamp(1.5rem, 3vw, 2rem);

@@ -33,11 +33,14 @@ public/
 
 ## Local development
 
+This project uses **pnpm** (npm has reliability issues installing the native
+deps on some Node versions).
+
 ```bash
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # output to dist/
-npm run preview  # preview the production build
+pnpm install
+pnpm dev         # http://localhost:4321
+pnpm build       # output to dist/
+pnpm preview     # preview the production build
 ```
 
 ## Deployment
