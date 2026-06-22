@@ -19,32 +19,26 @@ export default defineConfig({
         github: "https://github.com/data-privacy-stack",
       },
       customCss: ["./src/styles/tokens.css"],
+      head: [
+        { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
+        { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true } },
+        {
+          tag: "link",
+          attrs: {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+          },
+        },
+      ],
       // The marketing home lives at src/pages/index.astro (outside Starlight).
       // Everything below is Starlight-managed content with nav + search.
       sidebar: [
         {
-          label: "Projects",
-          items: [
-            { label: "Overview", slug: "projects" },
-            { label: "Presidio", slug: "projects/presidio" },
-          ],
-        },
-        {
           label: "Blog",
-          items: [{ label: "All posts", slug: "blog" }],
+          autogenerate: { directory: "blog" },
         },
-        {
-          label: "About",
-          items: [{ label: "Mission", slug: "about" }],
-        },
-        {
-          label: "Community",
-          items: [{ label: "Contributing", slug: "community/contributing" }],
-        },
-        {
-          label: "Governance",
-          items: [{ label: "Overview", slug: "community/governance" }],
-        },
+        // Back to the main site
+        { label: "← Data Privacy Stack", link: "/" },
       ],
     }),
   ],

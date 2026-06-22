@@ -12,10 +12,10 @@
   --dps-teal-darker: #0e4651;
   --dps-ink: #12343b;
   --dps-muted: #4a6368;
-  /* Matches the prism logo's background (sampled top → bottom) so the
-     hero artwork blends seamlessly into the page. */
-  --dps-bg-start: #bedcf7;
-  --dps-bg-end: #aed0f1;
+  /* Matches the prism artwork's background (sampled top → bottom) so the
+     hero image blends seamlessly into the page. */
+  --dps-bg-start: #cde2f9;
+  --dps-bg-end: #b6d4f2;
   --dps-card: #ffffff;
   --dps-accent: #e09f3e; /* warm secondary accent */
 }
@@ -45,5 +45,13 @@
   --dps-gradient: linear-gradient(180deg, var(--dps-bg-start), var(--dps-bg-end));
   --dps-radius: 16px;
   --dps-shadow: 0 20px 45px rgba(18, 52, 59, 0.12);
-  --dps-font: "Inter", "Segoe UI", "Avenir Next", "Helvetica Neue", sans-serif;
+  /* Type pairing: Space Grotesk (distinctive geometric display) for headings,
+     IBM Plex Sans (more character than Inter) for body. */
+  --dps-font: "IBM Plex Sans", "Segoe UI", "Helvetica Neue", sans-serif;
+  --dps-font-display: "Space Grotesk", "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+/* Make the docs/blog (Starlight) use the same type as the portal */
+:root {
+  --sl-font: "IBM Plex Sans", "Segoe UI", "Helvetica Neue", sans-serif;
 }
