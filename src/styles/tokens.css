@@ -1,0 +1,49 @@
+/*
+ * Data Privacy Stack — design tokens
+ * Seeded from the original placeholder palette (teal accent #1f7a8c).
+ * Starlight reads --sl-color-* variables; we map our brand onto them so
+ * the portal and the docs UI stay visually consistent.
+ */
+
+:root {
+  /* Brand palette */
+  --dps-teal: #1f7a8c;
+  --dps-teal-dark: #155e6c;
+  --dps-teal-darker: #0e4651;
+  --dps-ink: #12343b;
+  --dps-muted: #4a6368;
+  /* Matches the prism logo's background (sampled top → bottom) so the
+     hero artwork blends seamlessly into the page. */
+  --dps-bg-start: #bedcf7;
+  --dps-bg-end: #aed0f1;
+  --dps-card: #ffffff;
+  --dps-accent: #e09f3e; /* warm secondary accent */
+}
+
+/* Light theme */
+:root[data-theme="light"] {
+  --sl-color-accent-low: #d2e6ea;
+  --sl-color-accent: var(--dps-teal);
+  --sl-color-accent-high: var(--dps-teal-darker);
+  --sl-color-white: var(--dps-ink);
+  --sl-color-gray-1: #1c3a41;
+  --sl-color-gray-2: #355057;
+  --sl-color-gray-3: var(--dps-muted);
+  --sl-color-text-accent: var(--dps-teal-dark);
+}
+
+/* Dark theme */
+:root[data-theme="dark"] {
+  --sl-color-accent-low: #0e3038;
+  --sl-color-accent: #4bb0c4;
+  --sl-color-accent-high: #cdeef5;
+  --sl-color-text-accent: #7fcdda;
+}
+
+/* Shared brand variables used by the custom landing page */
+:root {
+  --dps-gradient: linear-gradient(180deg, var(--dps-bg-start), var(--dps-bg-end));
+  --dps-radius: 16px;
+  --dps-shadow: 0 20px 45px rgba(18, 52, 59, 0.12);
+  --dps-font: "Inter", "Segoe UI", "Avenir Next", "Helvetica Neue", sans-serif;
+}

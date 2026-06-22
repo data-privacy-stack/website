@@ -1,0 +1,98 @@
+---
+interface Props {
+  name: string;
+  tagline: string;
+  status?: string;
+  docsHref?: string;
+  githubHref?: string;
+  pypiHref?: string;
+}
+const { name, tagline, status, docsHref, githubHref, pypiHref } = Astro.props;
+---
+
+<article class="card">
+  <header>
+    <h3>{name}</h3>
+    {status && <span class="status">{status}</span>}
+  </header>
+  <p>{tagline}</p>
+  <footer>
+    {docsHref && <a class="primary" href={docsHref}>Docs →</a>}
+    {githubHref && <a href={githubHref}>GitHub</a>}
+    {pypiHref && <a href={pypiHref}>PyPI</a>}
+  </footer>
+</article>
+
+<style>
+  .card {
+    background: var(--dps-card);
+    border: 1px solid #dce8ea;
+    border-radius: var(--dps-radius);
+    padding: 1.5rem;
+    box-shadow: var(--dps-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    text-align: left;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--dps-ink);
+  }
+  .status {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--dps-teal-dark);
+    background: #d2e6ea;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+  }
+  p {
+    margin: 0;
+    color: var(--dps-muted);
+    line-height: 1.55;
+  }
+  footer {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    display: flex;
+    gap: 1rem;
+    font-weight: 600;
+  }
+  footer a {
+    color: var(--dps-teal-dark);
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+  footer a.primary {
+    color: var(--dps-teal);
+  }
+
+  :global(:root[data-theme="dark"]) .card {
+    background: #11272d;
+    border-color: #1d3b43;
+  }
+  :global(:root[data-theme="dark"]) h3 {
+    color: #eaf6f8;
+  }
+  :global(:root[data-theme="dark"]) p {
+    color: #a9c2c8;
+  }
+  :global(:root[data-theme="dark"]) .status {
+    background: #0e3038;
+    color: #7fcdda;
+  }
+  :global(:root[data-theme="dark"]) footer a {
+    color: #7fcdda;
+  }
+</style>

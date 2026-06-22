@@ -1,0 +1,349 @@
+---
+import "../styles/tokens.css";
+import { Image } from "astro:assets";
+import logo from "../assets/dps-logo.png";
+import mark from "../assets/dps-mark.png";
+
+const githubOrg = "https://github.com/data-privacy-stack";
+const presidioDocs = "https://presidio.dataprivacystack.org";
+
+const principles = [
+  {
+    title: "Open",
+    body: "Permissively licensed, community-driven, and developed in the open.",
+  },
+  {
+    title: "Transparent",
+    body: "Clear about what's detected, how, and why — no black boxes.",
+  },
+  {
+    title: "Composable",
+    body: "Independent building blocks you can adopt one piece at a time.",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Privacy Stack — open, transparent tools for private data handling</title>
+    <meta
+      name="description"
+      content="Open, transparent tools for private data handling."
+    />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <meta property="og:title" content="Data Privacy Stack" />
+    <meta
+      property="og:description"
+      content="Open, transparent tools for private data handling."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dataprivacystack.org" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">
+        <Image class="brand-mark" src={mark} alt="" width={28} height={28} aria-hidden="true" />
+        Data Privacy Stack
+      </a>
+      <nav>
+        <a href="/projects/">Projects</a>
+        <a href="/blog/">Blog</a>
+        <a href="/about/">About</a>
+        <a href="/community/contributing/">Community</a>
+        <a href="/community/governance/">Governance</a>
+        <a href={githubOrg}>GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <Image
+          class="hero-logo"
+          src={logo}
+          alt="Data Privacy Stack"
+          widths={[400, 600, 900]}
+          sizes="(max-width: 880px) 90vw, 520px"
+          loading="eager"
+        />
+        <div class="hero-copy">
+          <h1>Open, transparent tools for private data handling</h1>
+          <div class="cta">
+            <a class="btn primary" href={presidioDocs}>Explore Presidio</a>
+            <a class="btn" href={githubOrg}>View on GitHub</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mission">
+        <p class="mission-statement">
+          Our mission is to democratize privacy technology — putting open,
+          transparent tools for protecting sensitive data within everyone's
+          reach, and strengthening the privacy and security of individuals and
+          organizations alike.
+        </p>
+
+        <h2>Guidelines</h2>
+        <div class="principles">
+          {
+            principles.map((p) => (
+              <div class="principle">
+                <h3>{p.title}</h3>
+                <p>{p.body}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="band">
+        <h2>From the blog</h2>
+        <p class="lead">
+          Announcements, releases, and notes from the community.
+        </p>
+        <p class="blog-link"><a href="/blog/">Read the blog →</a></p>
+      </section>
+
+      <section class="band cta-band">
+        <h2>Build privacy in, from the start</h2>
+        <p class="lead">
+          Read the docs, file an issue, or open a pull request — contributions
+          of all sizes are welcome.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href={presidioDocs}>Read the docs</a>
+          <a class="btn" href="/community/contributing/">Contribute</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Data Privacy Stack</strong>
+        <p>Open, transparent tools for private data handling.</p>
+      </div>
+      <nav>
+        <a href="/projects/">Projects</a>
+        <a href="/blog/">Blog</a>
+        <a href="/about/">About</a>
+        <a href="/community/contributing/">Contributing</a>
+        <a href="/community/governance/">Governance</a>
+        <a href={githubOrg}>GitHub</a>
+      </nav>
+    </footer>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: var(--dps-font);
+        color: var(--dps-ink);
+        background: var(--dps-gradient);
+      }
+      a {
+        color: var(--dps-teal-dark);
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.1rem clamp(1rem, 5vw, 4rem);
+        flex-wrap: wrap;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        color: var(--dps-ink);
+      }
+      .brand-mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: block;
+      }
+      .topbar nav {
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+      }
+      .topbar nav a {
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--dps-muted);
+      }
+      .topbar nav a:hover {
+        color: var(--dps-teal-dark);
+      }
+      main {
+        width: min(1040px, 92vw);
+        margin: 0 auto;
+      }
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(1rem, 4vw, 3rem);
+        flex-wrap: wrap;
+        padding: clamp(2rem, 6vw, 4.5rem) 1rem 2.5rem;
+      }
+      .hero-logo {
+        width: min(480px, 90vw);
+        height: auto;
+        flex: 0 1 480px;
+        /* No frame/shadow: the page background matches the image background,
+           so the artwork blends seamlessly into the hero. */
+      }
+      .hero-copy {
+        flex: 1 1 360px;
+        min-width: min(100%, 320px);
+        text-align: left;
+      }
+      h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2.2rem, 5.2vw, 4rem);
+        line-height: 1.1;
+      }
+      .cta {
+        margin-top: 1.8rem;
+        display: flex;
+        gap: 0.9rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .hero-copy .cta {
+        justify-content: flex-start;
+      }
+      @media (max-width: 880px) {
+        .hero-copy {
+          text-align: center;
+        }
+        .hero-copy .cta {
+          justify-content: center;
+        }
+      }
+      .btn {
+        display: inline-block;
+        padding: 0.7rem 1.4rem;
+        border-radius: 999px;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1.5px solid var(--dps-teal);
+        color: var(--dps-teal-dark);
+        background: transparent;
+        transition: transform 0.08s ease, box-shadow 0.15s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(31, 122, 140, 0.18);
+      }
+      .btn.primary {
+        background: var(--dps-teal);
+        color: #fff;
+        border-color: var(--dps-teal);
+      }
+      .band {
+        text-align: center;
+        padding: 2.5rem 1rem;
+      }
+      .lead {
+        margin: 0 auto;
+        max-width: 680px;
+        font-size: 1.1rem;
+        line-height: 1.65;
+        color: var(--dps-muted);
+      }
+      .blog-link {
+        margin: 1rem 0 0;
+        font-weight: 600;
+      }
+      .blog-link a {
+        color: var(--dps-teal);
+        text-decoration: none;
+      }
+      .blog-link a:hover {
+        text-decoration: underline;
+      }
+      h2 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin: 0 0 1rem;
+      }
+      .mission {
+        text-align: center;
+        padding: 2.5rem 1rem 1rem;
+      }
+      .mission-statement {
+        margin: 0 auto 3rem;
+        max-width: 760px;
+        font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+        line-height: 1.5;
+        color: var(--dps-ink);
+        font-weight: 500;
+      }
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+        padding: 2rem 0;
+      }
+      .principle {
+        background: var(--dps-card);
+        border-radius: var(--dps-radius);
+        padding: 1.4rem;
+        box-shadow: var(--dps-shadow);
+        text-align: left;
+      }
+      .principle h3 {
+        margin: 0 0 0.4rem;
+        color: var(--dps-teal-dark);
+      }
+      .principle p {
+        margin: 0;
+        color: var(--dps-muted);
+        line-height: 1.55;
+      }
+      .cta-band {
+        margin: 1rem 0 3rem;
+        background: var(--dps-card);
+        border-radius: var(--dps-radius);
+        box-shadow: var(--dps-shadow);
+        padding: 2.5rem 1.5rem;
+      }
+      .site-footer {
+        border-top: 1px solid #cadde1;
+        margin-top: 2rem;
+        padding: 2rem clamp(1rem, 5vw, 4rem);
+        display: flex;
+        justify-content: space-between;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        color: var(--dps-muted);
+      }
+      .site-footer p {
+        margin: 0.3rem 0 0;
+      }
+      .site-footer nav {
+        display: flex;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+      .site-footer nav a {
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--dps-muted);
+      }
+      .site-footer nav a:hover {
+        color: var(--dps-teal-dark);
+      }
+    </style>
+  </body>
+</html>
