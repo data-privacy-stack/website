@@ -1,13 +1,11 @@
 ---
 import "../styles/tokens.css";
 import { Image } from "astro:assets";
-import ProjectCard from "../components/ProjectCard.astro";
 import logo from "../assets/dps-logo.png";
 import mark from "../assets/dps-mark.png";
 
 const githubOrg = "https://github.com/data-privacy-stack";
 const presidioDocs = "https://presidio.dataprivacystack.org";
-const presidioRepo = "https://github.com/data-privacy-stack/presidio";
 
 const principles = [
   {
@@ -33,13 +31,13 @@ const principles = [
     <title>Data Privacy Stack — open, transparent tools for private data handling</title>
     <meta
       name="description"
-      content="Open, transparent tools for private data handling. From the authors of Presidio."
+      content="Open, transparent tools for private data handling."
     />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <meta property="og:title" content="Data Privacy Stack" />
     <meta
       property="og:description"
-      content="Open, transparent tools for private data handling. From the authors of Presidio."
+      content="Open, transparent tools for private data handling."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dataprivacystack.org" />
@@ -67,57 +65,37 @@ const principles = [
           src={logo}
           alt="Data Privacy Stack"
           widths={[400, 600, 900]}
-          sizes="(max-width: 640px) 90vw, 560px"
+          sizes="(max-width: 880px) 90vw, 520px"
           loading="eager"
         />
-        <p class="from">From the authors of Presidio</p>
-        <h1>Open, transparent tools for private data handling</h1>
-        <div class="cta">
-          <a class="btn primary" href={presidioDocs}>Explore Presidio</a>
-          <a class="btn" href={githubOrg}>View on GitHub</a>
+        <div class="hero-copy">
+          <h1>Open, transparent tools for private data handling</h1>
+          <div class="cta">
+            <a class="btn primary" href={presidioDocs}>Explore Presidio</a>
+            <a class="btn" href={githubOrg}>View on GitHub</a>
+          </div>
         </div>
       </section>
 
-      <section class="band">
-        <h2>What is the Data Privacy Stack?</h2>
-        <p class="lead">
-          The Data Privacy Stack is a community-led home for open, transparent
-          tools that help engineers handle private data responsibly — starting
-          with <strong>Presidio</strong> for PII detection and anonymization,
-          with room to grow.
+      <section class="mission">
+        <p class="mission-statement">
+          Our mission is to democratize privacy technology — putting open,
+          transparent tools for protecting sensitive data within everyone's
+          reach, and strengthening the privacy and security of individuals and
+          organizations alike.
         </p>
-      </section>
 
-      <section class="projects">
-        <h2>Projects</h2>
-        <div class="grid">
-          <ProjectCard
-            name="Presidio"
-            tagline="Detect and anonymize PII in text, images, and structured data."
-            status="Active"
-            docsHref={presidioDocs}
-            githubHref={presidioRepo}
-            pypiHref="https://pypi.org/project/presidio-analyzer/"
-          />
-          <article class="card placeholder">
-            <h3>More coming</h3>
-            <p>
-              The stack is growing. Want to propose or contribute a project?
-              <a href="/community/contributing/">Get involved →</a>
-            </p>
-          </article>
+        <h2>Guidelines</h2>
+        <div class="principles">
+          {
+            principles.map((p) => (
+              <div class="principle">
+                <h3>{p.title}</h3>
+                <p>{p.body}</p>
+              </div>
+            ))
+          }
         </div>
-      </section>
-
-      <section class="principles">
-        {
-          principles.map((p) => (
-            <div class="principle">
-              <h3>{p.title}</h3>
-              <p>{p.body}</p>
-            </div>
-          ))
-        }
       </section>
 
       <section class="band">
@@ -210,30 +188,29 @@ const principles = [
         margin: 0 auto;
       }
       .hero {
-        text-align: center;
-        padding: clamp(2rem, 6vw, 4rem) 1rem 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(1rem, 4vw, 3rem);
+        flex-wrap: wrap;
+        padding: clamp(2rem, 6vw, 4.5rem) 1rem 2.5rem;
       }
       .hero-logo {
-        width: min(560px, 90vw);
+        width: min(480px, 90vw);
         height: auto;
+        flex: 0 1 480px;
         /* No frame/shadow: the page background matches the image background,
            so the artwork blends seamlessly into the hero. */
-        margin-bottom: 1.6rem;
       }
-      .from {
-        margin: 0 0 0.6rem;
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--dps-teal-dark);
+      .hero-copy {
+        flex: 1 1 360px;
+        min-width: min(100%, 320px);
+        text-align: left;
       }
       h1 {
         margin: 0 0 1rem;
-        font-size: clamp(1.8rem, 4.5vw, 3rem);
-        line-height: 1.15;
-        max-width: 760px;
-        margin-inline: auto;
+        font-size: clamp(2.2rem, 5.2vw, 4rem);
+        line-height: 1.1;
       }
       .cta {
         margin-top: 1.8rem;
@@ -241,6 +218,17 @@ const principles = [
         gap: 0.9rem;
         justify-content: center;
         flex-wrap: wrap;
+      }
+      .hero-copy .cta {
+        justify-content: flex-start;
+      }
+      @media (max-width: 880px) {
+        .hero-copy {
+          text-align: center;
+        }
+        .hero-copy .cta {
+          justify-content: center;
+        }
       }
       .btn {
         display: inline-block;
@@ -288,34 +276,17 @@ const principles = [
         font-size: clamp(1.5rem, 3vw, 2rem);
         margin: 0 0 1rem;
       }
-      .projects {
-        padding: 1.5rem 0 2rem;
+      .mission {
         text-align: center;
+        padding: 2.5rem 1rem 1rem;
       }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1.25rem;
-        margin-top: 1rem;
-      }
-      .card.placeholder {
-        background: rgba(255, 255, 255, 0.55);
-        border: 1px dashed #b4cdd2;
-        border-radius: var(--dps-radius);
-        padding: 1.5rem;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .card.placeholder h3 {
-        margin: 0;
+      .mission-statement {
+        margin: 0 auto 3rem;
+        max-width: 760px;
+        font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+        line-height: 1.5;
         color: var(--dps-ink);
-      }
-      .card.placeholder p {
-        margin: 0;
-        color: var(--dps-muted);
-        line-height: 1.55;
+        font-weight: 500;
       }
       .principles {
         display: grid;
