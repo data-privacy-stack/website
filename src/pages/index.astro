@@ -46,15 +46,14 @@ const posts = (await getCollection("docs"))
     <script is:inline>
       // Set theme before paint to avoid a flash. Shares Starlight's key so the
       // choice carries over to the docs/blog pages.
+      // Default is DARK regardless of OS; only an explicit toggle overrides it.
       (function () {
         try {
-          const stored = localStorage.getItem("starlight-theme");
-          const theme =
-            stored === "light" || stored === "dark"
-              ? stored
-              : window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
+          let theme = localStorage.getItem("starlight-theme");
+          if (theme !== "light" && theme !== "dark") {
+            theme = "dark";
+            localStorage.setItem("starlight-theme", theme);
+          }
           document.documentElement.dataset.theme = theme;
         } catch (e) {}
       })();
