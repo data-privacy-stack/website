@@ -20,6 +20,12 @@ export default defineConfig({
       },
       customCss: ["./src/styles/tokens.css"],
       head: [
+        {
+          // Default to dark regardless of OS; only an explicit toggle overrides it.
+          tag: "script",
+          content:
+            'try{var t=localStorage.getItem("starlight-theme");if(t!=="light"&&t!=="dark"){t="dark";localStorage.setItem("starlight-theme",t)}document.documentElement.dataset.theme=t}catch(e){}',
+        },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true } },
         {
