@@ -5,7 +5,7 @@ lastUpdated: 2026-06-22
 ---
 
 The **Data Privacy Stack** is a community-led home for open, transparent tools
-for private data handling — from the authors of [Presidio](/projects/presidio/).
+for private data handling — from the authors of [Presidio](/#projects).
 
 ## Why now
 
@@ -18,7 +18,7 @@ together.
 ## What to expect
 
 - **Presidio, continued.** Active development under community
-  [governance](/community/governance/).
+  [governance](/#governance).
 - **More tools over time.** The stack is designed to grow into a set of
   composable privacy building blocks.
 - **Open and transparent by default.** Direction is set in public, and the tools
@@ -27,8 +27,8 @@ together.
 ## Get involved
 
 - Read the [Presidio docs](https://presidio.dataprivacystack.org)
-- Explore the [projects](/projects/)
-- See how to [contribute](/community/contributing/) and how the project is
-  [governed](/community/governance/)
+- Explore the [projects](/#projects)
+- See how to [contribute](/#community) and how the project is
+  [governed](/#governance)
 
 Welcome aboard.
