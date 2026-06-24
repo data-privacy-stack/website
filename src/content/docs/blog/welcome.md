@@ -5,13 +5,13 @@ lastUpdated: 2026-06-22
 ---
 
 The **Data Privacy Stack** is a community-led home for open, transparent tools
-for private data handling, from the authors of [Presidio](/#projects).
+for private data handling - from the authors of [Presidio](/#projects).
 
 ## Why now
 
 Handling private data well shouldn't depend on a single vendor or a black box.
 Presidio has grown into a widely adopted framework for detecting and anonymizing
-PII, and the Data Privacy Stack gives it (and future privacy tools) a neutral,
+PII, and the Data Privacy Stack gives it - and future privacy tools - a neutral,
 community-governed home where they can be maintained in the open and evolve
 together.
 
