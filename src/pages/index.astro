@@ -105,15 +105,17 @@ const posts = (await getCollection("docs"))
         <h1 class="site-title">Data Privacy Stack</h1>
         <div class="hero-row">
           <div class="hero-logo-wrap">
-            <img
-              class="hero-logo"
-              src="/inkey.svg?v=clean-white-eye-2"
-              alt="Data Privacy Stack octopus mascot"
-              width="3470"
-              height="3360"
-              loading="eager"
-              decoding="async"
-            />
+            <div class="hero-logo-frame">
+              <img
+                class="hero-logo"
+                src="/inkey.svg?v=white-details-5"
+                alt="Data Privacy Stack octopus mascot"
+                width="3470"
+                height="3360"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
           </div>
           <div class="hero-copy">
             <p class="tagline">Open, transparent tools for private data handling</p>
@@ -663,18 +665,34 @@ const posts = (await getCollection("docs"))
         flex: 0 1 400px;
         width: min(400px, 78vw);
       }
+      .hero-logo-frame {
+        position: relative;
+        isolation: isolate;
+      }
+      :root[data-theme="dark"] .hero-logo-frame::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: url("/inkey.svg?v=white-details-5") center / contain no-repeat;
+        filter: brightness(0) invert(1) drop-shadow(0 18px 34px rgba(0, 0, 0, 0.55));
+        opacity: 0.96;
+        transform: scale(1.018);
+      }
       .hero-logo {
+        position: relative;
         display: block;
         width: 100%;
         height: auto;
         filter: drop-shadow(0 16px 38px rgba(13, 17, 23, 0.28));
       }
       :root[data-theme="dark"] .hero-logo {
-        filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.55));
+        filter: none;
       }
       /* Inky gently breathes — decorative, disabled under reduced motion */
       @media (prefers-reduced-motion: no-preference) {
-        .hero-logo { animation: float 8s var(--ease-in-out) infinite; }
+        .hero-logo-frame { animation: float 8s var(--ease-in-out) infinite; }
       }
       @keyframes float {
         0%, 100% { transform: translateY(0); }
