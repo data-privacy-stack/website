@@ -107,8 +107,18 @@ const posts = (await getCollection("docs"))
           <div class="hero-logo-wrap">
             <div class="hero-logo-frame">
               <img
+                class="hero-logo-silhouette"
+                src="/inkey.svg?v=white-details-6"
+                alt=""
+                aria-hidden="true"
+                width="3470"
+                height="3360"
+                loading="eager"
+                decoding="async"
+              />
+              <img
                 class="hero-logo"
-                src="/inkey.svg?v=white-details-5"
+                src="/inkey.svg?v=white-details-6"
                 alt="Data Privacy Stack octopus mascot"
                 width="3470"
                 height="3360"
@@ -669,16 +679,21 @@ const posts = (await getCollection("docs"))
         position: relative;
         isolation: isolate;
       }
-      :root[data-theme="dark"] .hero-logo-frame::before {
-        content: "";
+      /* Dark-mode white silhouette: a second stacked copy of the mascot,
+         a child of the same animated frame so it floats 1:1 with Inky. */
+      .hero-logo-silhouette { display: none; }
+      :root[data-theme="dark"] .hero-logo-silhouette {
+        display: block;
         position: absolute;
         inset: 0;
+        width: 100%;
+        height: auto;
         z-index: -1;
         pointer-events: none;
-        background: url("/inkey.svg?v=white-details-5") center / contain no-repeat;
         filter: brightness(0) invert(1) drop-shadow(0 18px 34px rgba(0, 0, 0, 0.55));
         opacity: 0.96;
         transform: scale(1.018);
+        transform-origin: center;
       }
       .hero-logo {
         position: relative;
