@@ -2,7 +2,6 @@
 import "../styles/tokens.css";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import octopus from "../assets/octopus.png";
 import mark from "../assets/dps-mark.png";
 
 const githubOrg = "https://github.com/data-privacy-stack";
@@ -15,7 +14,7 @@ const ccByUrl = "https://creativecommons.org/licenses/by/4.0/";
 
 const principles = [
   { title: "Open", body: "Permissively licensed, community-driven, and developed in the open." },
-  { title: "Transparent", body: "Clear about what's detected, how, and why — no black boxes." },
+  { title: "Transparent", body: "Clear about what's detected, how, and why. No black boxes." },
   { title: "Composable", body: "Independent building blocks you can adopt one piece at a time." },
 ];
 
@@ -33,7 +32,7 @@ const posts = (await getCollection("docs"))
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Privacy Stack — open, transparent tools for private data handling</title>
+    <title>Data Privacy Stack: open, transparent tools for private data handling</title>
     <meta name="description" content="Open, transparent tools for private data handling." />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -107,13 +106,14 @@ const posts = (await getCollection("docs"))
         <h1 class="site-title">Data Privacy Stack</h1>
         <div class="hero-row">
           <div class="hero-logo-wrap">
-            <Image
+            <img
               class="hero-logo"
-              src={octopus}
+              src="/octopus.svg"
               alt="Data Privacy Stack octopus mascot"
-              widths={[320, 480, 640]}
-              sizes="(max-width: 880px) 70vw, 380px"
+              width="600"
+              height="682"
               loading="eager"
+              decoding="async"
             />
           </div>
           <div class="hero-copy">
@@ -151,13 +151,13 @@ const posts = (await getCollection("docs"))
       <!-- About / Mission -->
       <section id="about" class="section sec-a">
         <p class="mission-statement">
-          Our mission is to democratize privacy technology — putting open, transparent
+          Our mission is to democratize privacy technology by putting open, transparent
           tools for protecting sensitive data within everyone's reach, and strengthening
           the privacy and security of individuals and organizations alike.
         </p>
         <p class="lead">
           The Data Privacy Stack is a community-led home for open, transparent tools that
-          help engineers handle private data responsibly — starting with
+          help engineers handle private data responsibly, starting with
           <strong>Presidio</strong> for PII detection and anonymization, with room to grow.
         </p>
         <h2>Guiding principles</h2>
@@ -177,7 +177,7 @@ const posts = (await getCollection("docs"))
         <div class="cards">
           <article class="card project">
             <h3>Presidio</h3>
-            <p>Detect and anonymize PII in text, images, and structured data — through
+            <p>Detect and anonymize PII in text, images, and structured data using
               redaction, masking, replacement, encryption, and synthetic surrogates.</p>
             <div class="card-links">
               <a class="primary" href={presidioDocs}>Docs&nbsp;→</a>
@@ -196,7 +196,7 @@ const posts = (await getCollection("docs"))
       <!-- Ecosystem (logos via Magic logo_search; structure from ui-ux-pro-max) -->
       <section id="ecosystem" class="section sec-a">
         <h2>Runs where you work</h2>
-        <p class="lead">From a Python import to Docker and Kubernetes — drop the stack into the
+        <p class="lead">From a Python import to Docker and Kubernetes, drop the stack into the
           tools and pipelines you already use.</p>
         <ul class="eco-logos" aria-label="Ecosystem and integrations">
           <li>
@@ -219,26 +219,26 @@ const posts = (await getCollection("docs"))
         <h2>Governance</h2>
         <p class="lead">
           The Data Privacy Stack follows a <strong>Minimum Viable Governance (MVG)</strong>
-          model — a lightweight, two-tier structure that puts clear, consensus-based
+          model, a lightweight, two-tier structure that puts clear, consensus-based
           governance in place without heavyweight overhead.
         </p>
         <div class="cards">
           <div class="card">
             <h3>Technical Steering Committee</h3>
             <p>At the organization level, the TSC sets overall direction and coordinates
-              across projects — technical roadmap, maintainer appointments, and governance
+              across projects: technical roadmap, maintainer appointments, and governance
               policy.</p>
           </div>
           <div class="card">
             <h3>Project Maintainers</h3>
             <p>Each project is run by its maintainers through a lightweight,
-              consensus-based process — reviewing contributions and keeping the project
+              consensus-based process, reviewing contributions and keeping the project
               secure, maintained, and modern.</p>
           </div>
         </div>
         <p class="more">
-          The authoritative governance documents — charter, code of conduct, steering
-          committee, and per-project governance — live in the
+          The authoritative governance documents (charter, code of conduct, steering
+          committee, and per-project governance) live in the
           <a href={mvgRepo}>MVG repository</a>.
         </p>
       </section>
@@ -261,7 +261,7 @@ const posts = (await getCollection("docs"))
       <section id="community" class="section sec-a">
         <h2>Community</h2>
         <p class="lead">
-          Contributions of all sizes are welcome — code, documentation, bug reports,
+          Contributions of all sizes are welcome: code, documentation, bug reports,
           feature ideas, and reviews. Development happens in the open across the
           <a href={githubOrg}>Data Privacy Stack organization</a>.
         </p>
