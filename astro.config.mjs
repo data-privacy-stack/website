@@ -17,7 +17,7 @@ export default defineConfig({
       description:
         "Open-source building blocks for detecting, anonymizing, and protecting sensitive data.",
       logo: {
-        src: "./src/assets/dps-mark.png",
+        src: "./src/assets/octopus-icon.svg",
         replacesTitle: false,
       },
       favicon: "/favicon.png",
@@ -34,6 +34,7 @@ export default defineConfig({
         },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true } },
+        { tag: "link", attrs: { rel: "icon", type: "image/svg+xml", href: "/octopus-icon.svg" } },
         { tag: "link", attrs: { rel: "apple-touch-icon", href: "/apple-touch-icon.png" } },
         {
           tag: "link",

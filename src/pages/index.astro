@@ -1,8 +1,6 @@
 ---
 import "../styles/tokens.css";
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import mark from "../assets/dps-mark.png";
 
 const githubOrg = "https://github.com/data-privacy-stack";
 const presidioDocs = "https://presidio.dataprivacystack.org";
@@ -34,6 +32,7 @@ const posts = (await getCollection("docs"))
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data Privacy Stack: open, transparent tools for private data handling</title>
     <meta name="description" content="Open, transparent tools for private data handling." />
+    <link rel="icon" type="image/svg+xml" href="/octopus-icon.svg" />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -72,7 +71,7 @@ const posts = (await getCollection("docs"))
   <body>
     <header class="nav">
       <a class="brand" href="#top">
-        <Image class="brand-mark" src={mark} alt="" width={28} height={28} aria-hidden="true" />
+        <img class="brand-mark" src="/octopus-icon.svg" alt="" width="28" height="28" aria-hidden="true" />
         <span class="brand-label">Data Privacy Stack</span>
       </a>
       <nav id="nav-links" class="links">
@@ -110,8 +109,8 @@ const posts = (await getCollection("docs"))
               class="hero-logo"
               src="/octopus.svg"
               alt="Data Privacy Stack octopus mascot"
-              width="600"
-              height="682"
+              width="490"
+              height="649"
               loading="eager"
               decoding="async"
             />
@@ -290,7 +289,7 @@ const posts = (await getCollection("docs"))
       <div class="foot-cols">
         <div class="foot-brand">
           <div class="foot-brandline">
-            <Image class="brand-mark" src={mark} alt="" width={28} height={28} aria-hidden="true" />
+            <img class="brand-mark" src="/octopus-icon.svg" alt="" width="28" height="28" aria-hidden="true" />
             <strong>Data Privacy Stack</strong>
           </div>
           <p>Open, transparent tools for private data handling.</p>
@@ -661,8 +660,8 @@ const posts = (await getCollection("docs"))
         flex-wrap: wrap;
       }
       .hero-logo-wrap {
-        flex: 0 1 360px;
-        width: min(360px, 72vw);
+        flex: 0 1 400px;
+        width: min(400px, 78vw);
       }
       .hero-logo {
         display: block;
