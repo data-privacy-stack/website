@@ -1,57 +1,58 @@
 /*
- * Data Privacy Stack — design tokens
- * Seeded from the original placeholder palette (teal accent #1f7a8c).
- * Starlight reads --sl-color-* variables; we map our brand onto them so
- * the portal and the docs UI stay visually consistent.
+ * Data Privacy Stack — design tokens (v2: refined / premium / light-first)
+ * Calm neutral canvas + one restrained indigo accent; the octopus mascot
+ * carries the colour. Type: Plus Jakarta Sans (display) + Inter (body).
+ * Starlight reads --sl-color-* variables so the portal and docs stay aligned.
  */
 
 :root {
-  /* Brand palette */
-  --dps-teal: #1f7a8c;
-  --dps-teal-dark: #155e6c;
-  --dps-teal-darker: #0e4651;
-  --dps-ink: #12343b;
-  --dps-muted: #4a6368;
-  /* Matches the prism artwork's background (sampled top → bottom) so the
-     hero image blends seamlessly into the page. */
-  --dps-bg-start: #cde2f9;
-  --dps-bg-end: #b6d4f2;
+  --dps-ink: #11131a;        /* near-black text */
+  --dps-indigo: #4f46e5;     /* primary accent */
+  --dps-indigo-dark: #4338ca;
+  --dps-violet: #7c3aed;     /* secondary, used sparingly */
+  --dps-cyan: #22d3ee;
+  --dps-muted: #5b6472;
+  --dps-bg: #fbfbfd;         /* page canvas */
   --dps-card: #ffffff;
-  --dps-accent: #e09f3e; /* warm secondary accent */
+  --dps-border: #e6e8ee;
 }
 
-/* Light theme */
+/* Light theme (default) */
 :root[data-theme="light"] {
-  --sl-color-accent-low: #d2e6ea;
-  --sl-color-accent: var(--dps-teal);
-  --sl-color-accent-high: var(--dps-teal-darker);
+  --sl-color-accent-low: #e7e6fb;
+  --sl-color-accent: var(--dps-indigo);
+  --sl-color-accent-high: var(--dps-indigo-dark);
   --sl-color-white: var(--dps-ink);
-  --sl-color-gray-1: #1c3a41;
-  --sl-color-gray-2: #355057;
+  --sl-color-gray-1: #1c2230;
+  --sl-color-gray-2: #3a4252;
   --sl-color-gray-3: var(--dps-muted);
-  --sl-color-text-accent: var(--dps-teal-dark);
+  --sl-color-text-accent: var(--dps-indigo);
 }
 
 /* Dark theme */
 :root[data-theme="dark"] {
-  --sl-color-accent-low: #0e3038;
-  --sl-color-accent: #4bb0c4;
-  --sl-color-accent-high: #cdeef5;
-  --sl-color-text-accent: #7fcdda;
+  --sl-color-bg: #0e1116;
+  --sl-color-accent-low: #1b1b3a;
+  --sl-color-accent: #8b83ff;
+  --sl-color-accent-high: #c7c2ff;
+  --sl-color-text-accent: #a99dff;
 }
 
 /* Shared brand variables used by the custom landing page */
 :root {
-  --dps-gradient: linear-gradient(180deg, var(--dps-bg-start), var(--dps-bg-end));
-  --dps-radius: 16px;
-  --dps-shadow: 0 20px 45px rgba(18, 52, 59, 0.12);
-  /* Type pairing: Space Grotesk (distinctive geometric display) for headings,
-     IBM Plex Sans (more character than Inter) for body. */
-  --dps-font: "IBM Plex Sans", "Segoe UI", "Helvetica Neue", sans-serif;
-  --dps-font-display: "Space Grotesk", "IBM Plex Sans", "Segoe UI", sans-serif;
+  /* Subtle indigo→violet, reserved for tiny accents (the octopus carries colour) */
+  --dps-gradient: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  --dps-radius: 14px;
+  --dps-shadow: 0 1px 2px rgba(17, 19, 26, 0.04), 0 14px 34px rgba(17, 19, 26, 0.09);
+  --dps-font: "Inter", "Segoe UI", "Helvetica Neue", sans-serif;
+  --dps-font-display: "Plus Jakarta Sans", "Inter", "Segoe UI", sans-serif;
+  /* Strong custom easings (Emil Kowalski) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 /* Make the docs/blog (Starlight) use the same type as the portal */
 :root {
-  --sl-font: "IBM Plex Sans", "Segoe UI", "Helvetica Neue", sans-serif;
+  --sl-font: "Inter", "Segoe UI", "Helvetica Neue", sans-serif;
+  --sl-font-headings: "Plus Jakarta Sans", "Inter", "Segoe UI", sans-serif;
 }

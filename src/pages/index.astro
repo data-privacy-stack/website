@@ -2,7 +2,7 @@
 import "../styles/tokens.css";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import prism from "../assets/prism.png";
+import octopus from "../assets/octopus.png";
 import mark from "../assets/dps-mark.png";
 
 const githubOrg = "https://github.com/data-privacy-stack";
@@ -36,10 +36,11 @@ const posts = (await getCollection("docs"))
     <title>Data Privacy Stack — open, transparent tools for private data handling</title>
     <meta name="description" content="Open, transparent tools for private data handling." />
     <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <meta property="og:title" content="Data Privacy Stack" />
@@ -49,15 +50,22 @@ const posts = (await getCollection("docs"))
     <script is:inline>
       // Set theme before paint to avoid a flash. Shares Starlight's key so the
       // choice carries over to the docs/blog pages.
-      // Default is DARK regardless of OS; only an explicit toggle overrides it.
+      // Default is LIGHT; only an explicit toggle overrides it.
       (function () {
         try {
           let theme = localStorage.getItem("starlight-theme");
           if (theme !== "light" && theme !== "dark") {
-            theme = "dark";
+            theme = "light";
             localStorage.setItem("starlight-theme", theme);
           }
           document.documentElement.dataset.theme = theme;
+          if (
+            window.matchMedia &&
+            !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+            "IntersectionObserver" in window
+          ) {
+            document.documentElement.classList.add("reveal-ready");
+          }
         } catch (e) {}
       })();
     </script>
@@ -71,6 +79,7 @@ const posts = (await getCollection("docs"))
       <nav id="nav-links" class="links">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
+        <a href="#ecosystem">Ecosystem</a>
         <a href="#governance">Governance</a>
         <a href="#blog">Blog</a>
         <a href="#community">Community</a>
@@ -97,20 +106,44 @@ const posts = (await getCollection("docs"))
       <section class="hero">
         <h1 class="site-title">Data Privacy Stack</h1>
         <div class="hero-row">
-          <Image
-            class="hero-logo"
-            src={prism}
-            alt=""
-            widths={[400, 600, 900]}
-            sizes="(max-width: 880px) 90vw, 520px"
-            loading="eager"
-          />
+          <div class="hero-logo-wrap">
+            <Image
+              class="hero-logo"
+              src={octopus}
+              alt="Data Privacy Stack octopus mascot"
+              widths={[320, 480, 640]}
+              sizes="(max-width: 880px) 70vw, 380px"
+              loading="eager"
+            />
+          </div>
           <div class="hero-copy">
             <p class="tagline">Open, transparent tools for private data handling</p>
             <div class="cta">
               <a class="btn primary" href={presidioDocs}>Explore Presidio</a>
               <a class="btn" href={githubOrg}>View on GitHub</a>
             </div>
+            <ul class="badges" aria-label="Capabilities">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                PII detection
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.7 5.1A11 11 0 0 1 12 5c5 0 9 4.5 10 7a13.2 13.2 0 0 1-2.2 3.1"/><path d="M6.6 6.6C3.9 8.2 2.4 10.6 2 12c1 2.5 5 7 10 7a10.4 10.4 0 0 0 5.4-1.6"/><path d="m2 2 20 20"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                Redaction
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+                De-identification
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20Z"/></svg>
+                Multi-language
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
+                Open source
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -158,6 +191,27 @@ const posts = (await getCollection("docs"))
               <a href="#community">Get involved →</a></p>
           </article>
         </div>
+      </section>
+
+      <!-- Ecosystem (logos via Magic logo_search; structure from ui-ux-pro-max) -->
+      <section id="ecosystem" class="section sec-a">
+        <h2>Runs where you work</h2>
+        <p class="lead">From a Python import to Docker and Kubernetes — drop the stack into the
+          tools and pipelines you already use.</p>
+        <ul class="eco-logos" aria-label="Ecosystem and integrations">
+          <li>
+            <svg role="img" aria-label="Python" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="16 16 32 32"><path fill="url(#dps-py-a)" d="M31.885 16c-8.124 0-7.617 3.523-7.617 3.523l.01 3.65h7.752v1.095H21.197S16 23.678 16 31.876c0 8.196 4.537 7.906 4.537 7.906h2.708v-3.804s-.146-4.537 4.465-4.537h7.688s4.32.07 4.32-4.175v-7.019S40.374 16 31.885 16zm-4.275 2.454a1.394 1.394 0 1 1 0 2.79 1.393 1.393 0 0 1-1.395-1.395c0-.771.624-1.395 1.395-1.395z"/><path fill="url(#dps-py-b)" d="M32.115 47.833c8.124 0 7.617-3.523 7.617-3.523l-.01-3.65H31.97v-1.095h10.832S48 40.155 48 31.958c0-8.197-4.537-7.906-4.537-7.906h-2.708v3.803s.146 4.537-4.465 4.537h-7.688s-4.32-.07-4.32 4.175v7.019s-.656 4.247 7.833 4.247zm4.275-2.454a1.393 1.393 0 0 1-1.395-1.395 1.394 1.394 0 1 1 1.395 1.395z"/><defs><linearGradient id="dps-py-a" x1="19.075" x2="34.898" y1="18.782" y2="34.658" gradientUnits="userSpaceOnUse"><stop stop-color="#387EB8"/><stop offset="1" stop-color="#366994"/></linearGradient><linearGradient id="dps-py-b" x1="28.809" x2="45.803" y1="28.882" y2="45.163" gradientUnits="userSpaceOnUse"><stop stop-color="#FFE052"/><stop offset="1" stop-color="#FFC331"/></linearGradient></defs></svg>
+          </li>
+          <li>
+            <svg role="img" aria-label="Docker" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#008fe2"><path d="M13.98 11.08h2.12a.19.19 0 0 0 .19-.19V9.01a.19.19 0 0 0-.19-.19h-2.12a.18.18 0 0 0-.18.18v1.9c0 .1.08.18.18.18m-2.95-5.43h2.12a.19.19 0 0 0 .18-.19V3.57a.19.19 0 0 0-.18-.18h-2.12a.18.18 0 0 0-.19.18v1.9c0 .1.09.18.19.18m0 2.71h2.12a.19.19 0 0 0 .18-.18V6.29a.19.19 0 0 0-.18-.18h-2.12a.18.18 0 0 0-.19.18v1.89c0 .1.09.18.19.18m-2.93 0h2.12a.19.19 0 0 0 .18-.18V6.29a.18.18 0 0 0-.18-.18H8.1a.18.18 0 0 0-.18.18v1.89c0 .1.08.18.18.18m-2.96 0h2.11a.19.19 0 0 0 .19-.18V6.29a.18.18 0 0 0-.19-.18H5.14a.19.19 0 0 0-.19.18v1.89c0 .1.08.18.19.18m5.89 2.72h2.12a.19.19 0 0 0 .18-.19V9.01a.19.19 0 0 0-.18-.19h-2.12a.18.18 0 0 0-.19.18v1.9c0 .1.09.18.19.18m-2.93 0h2.12a.18.18 0 0 0 .18-.19V9.01a.18.18 0 0 0-.18-.19H8.1a.18.18 0 0 0-.18.18v1.9c0 .1.08.18.18.18m-2.96 0h2.11a.18.18 0 0 0 .19-.19V9.01a.18.18 0 0 0-.18-.19H5.14a.19.19 0 0 0-.19.19v1.88c0 .1.08.19.19.19m-2.92 0h2.12a.18.18 0 0 0 .18-.19V9.01a.18.18 0 0 0-.18-.19H2.22a.18.18 0 0 0-.19.18v1.9c0 .1.08.18.19.18m21.54-1.19c-.06-.05-.67-.51-1.95-.51-.34 0-.68.03-1.01.09a3.77 3.77 0 0 0-1.72-2.57l-.34-.2-.23.33a4.6 4.6 0 0 0-.6 1.43c-.24.97-.1 1.88.4 2.66a4.7 4.7 0 0 1-1.75.42H.76a.75.75 0 0 0-.76.75 11.38 11.38 0 0 0 .7 4.06 6.03 6.03 0 0 0 2.4 3.12c1.18.73 3.1 1.14 5.28 1.14.98 0 1.96-.08 2.93-.26a12.25 12.25 0 0 0 3.82-1.4 10.5 10.5 0 0 0 2.61-2.13c1.25-1.42 2-3 2.55-4.4h.23c1.37 0 2.21-.55 2.68-1 .3-.3.55-.66.7-1.06l.1-.28Z"/></svg>
+          </li>
+          <li>
+            <svg role="img" aria-label="Kubernetes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 722.8 702"><path style="fill:#326ce5" transform="translate(-6 -175)" d="M365 185a47 46 0 0 0-18 4L103 306a47 46 0 0 0-25 32L18 600a47 46 0 0 0 6 35 47 46 0 0 0 3 4l169 210a47 46 0 0 0 36 18h271a47 46 0 0 0 37-18l169-210a47 46 0 0 0 9-39l-60-263a47 46 0 0 0-26-31L388 189a47 46 0 0 0-23-4z"/><path style="fill:#fff" transform="translate(-6 -175)" d="M368 274c-8 0-15 7-15 16v4l2 14 2 27c-1 3-3 6-5 7v7a190 190 0 0 0-122 58l-6-3c-2 0-5 1-8-1l-20-18-10-10-3-3c-3-2-7-4-10-4-5 0-9 2-12 5-5 7-3 16 4 22l3 3 12 7 22 15c2 2 3 7 3 8l5 5c-26 37-37 84-30 131l-6 2c-2 2-4 6-7 7l-26 4-14 1-4 1c-9 2-14 10-13 18 2 8 11 12 19 11h1v-1h4l13-5c9-4 17-7 25-8l9 3 6-1c15 45 45 82 84 105l-2 7c1 2 2 5 1 8l-13 24-8 11-2 4c-4 8-1 18 6 21 8 4 17 0 20-8l2-4 5-13c3-10 6-20 11-27l6-3 3-6a189 189 0 0 0 135 1l4 5c2 1 5 2 7 5l10 24 4 14 2 4c4 8 13 11 20 8 8-4 10-13 7-21l-2-4-8-12c-6-8-10-15-13-23-1-4 0-6 1-8l-2-6c40-24 70-62 84-106l6 1c2-2 4-4 8-3 8 1 16 4 26 7l13 5 4 1c9 2 17-3 19-10 2-8-4-16-12-18l-5-1-14-1c-10-1-18-2-26-5-3-1-5-5-6-6l-6-2a189 189 0 0 0-31-131l6-5c0-3 0-5 2-8 6-6 13-10 22-16l12-7 4-2c7-6 8-16 3-22s-15-7-22-1l-3 2-10 11c-7 7-13 13-19 17-3 2-7 2-9 1l-6 4c-31-33-75-54-121-58v-7c-2-2-5-3-5-7-1-8 0-16 1-27l2-14v-4c0-9-6-16-14-16zm-19 113-4 77a13 13 0 0 1-21 10l-63-44a151 151 0 0 1 88-43zm37 0c33 5 64 20 88 43l-63 44a13 13 0 0 1-21-10zm-148 71 58 52a13 13 0 0 1-5 22l-74 22c-4-35 4-68 21-96zm259 0a153 153 0 0 1 22 95l-74-21a13 13 0 0 1-5-22h-1l58-52zm-141 56h23l15 18-5 23-21 10-21-10-6-23zm75 62h3l77 13c-12 32-33 59-61 77l-30-72a13 13 0 0 1 11-18zm-128 1a13 13 0 0 1 12 18l-29 71c-27-18-49-44-61-77l76-12h2zm64 31c2-1 4 0 6 1 3 1 5 3 6 5l38 68a154 154 0 0 1-98-1l37-67c3-4 7-6 11-6z"/></svg>
+          </li>
+          <li>
+            <svg role="img" aria-label="GitHub" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.51 11.51 0 0 1 3.003-.404c1.018.005 2.045.138 3.003.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .321.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </li>
+        </ul>
       </section>
 
       <!-- Governance -->
@@ -246,6 +300,7 @@ const posts = (await getCollection("docs"))
           <h4>Navigate</h4>
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
+          <a href="#ecosystem">Ecosystem</a>
           <a href="#governance">Governance</a>
           <a href="#blog">Blog</a>
           <a href="#community">Community</a>
@@ -314,45 +369,148 @@ const posts = (await getCollection("docs"))
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") setMenu(false);
       });
+
+      // Scroll reveal — reveal each target once as it enters the viewport.
+      (function () {
+        if (!document.documentElement.classList.contains("reveal-ready")) return;
+        const sel = [
+          ".hero .site-title",
+          ".hero .hero-logo-wrap",
+          ".hero .hero-copy",
+          ".section h2",
+          ".section .mission-statement",
+          ".section .lead",
+          ".section .more",
+          ".section .card",
+          ".section .eco-logos li",
+          ".posts li",
+        ].join(",");
+        const io = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-visible");
+                obs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        );
+        document.querySelectorAll(sel).forEach((el) => io.observe(el));
+      })();
     </script>
 
     <style>
       :root {
-        --page-bg: linear-gradient(180deg, var(--dps-bg-start), var(--dps-bg-end));
+        --page-bg: var(--dps-bg);
         --text: var(--dps-ink);
         --text-muted: var(--dps-muted);
         --card-bg: #ffffff;
-        --card-border: #c7ddec;
-        --accent: var(--dps-teal);
-        --accent-strong: var(--dps-teal-dark);
-        --nav-bg: rgba(232, 243, 252, 0.78);
-        --nav-border: rgba(18, 52, 59, 0.1);
+        --card-border: var(--dps-border);
+        --card-border-hover: #d7dae3;
+        --accent: var(--dps-indigo);
+        --accent-strong: var(--dps-indigo-dark);
+        --nav-bg: rgba(251, 251, 253, 0.82);
+        --nav-border: rgba(17, 19, 26, 0.08);
         --hero-radius: 0px;
         --hero-shadow: none;
-        /* alternating section bands (two close tones) */
-        --sec-a: #c9e0f8;
-        --sec-b: #bbd6f2;
-        --sec-foot: #aecdee;
+        /* gentle section rhythm: page canvas alternating with a faint tint */
+        --sec-a: transparent;
+        --sec-b: #f4f5f9;
+        --sec-foot: #f4f5f9;
       }
       :root[data-theme="dark"] {
-        --page-bg: #0d1b21;
-        --text: #e7eef0;
-        --text-muted: #9fb6bc;
-        --card-bg: #15262d;
-        --card-border: #28424b;
-        --accent: #4bb0c4;
-        --accent-strong: #8ad4e2;
-        --nav-bg: rgba(13, 27, 33, 0.8);
-        --nav-border: rgba(255, 255, 255, 0.08);
-        --hero-radius: 16px;
-        --hero-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
-        --sec-a: #0f2026;
-        --sec-b: #14282f;
-        --sec-foot: #0a161b;
+        --page-bg: #0e1116;
+        --text: #e8eaf0;
+        --text-muted: #9aa3b2;
+        --card-bg: #161a22;
+        --card-border: #232936;
+        --card-border-hover: #2d3442;
+        --accent: #8b83ff;
+        --accent-strong: #b7b1ff;
+        --nav-bg: rgba(14, 17, 22, 0.82);
+        --nav-border: rgba(255, 255, 255, 0.07);
+        --hero-radius: 0px;
+        --hero-shadow: none;
+        --sec-a: transparent;
+        --sec-b: #12151c;
+        --sec-foot: #0b0e13;
       }
 
+      /* ---- Scroll reveal — transform+opacity only, custom ease-out.
+         Hidden state is gated behind html.reveal-ready, which the head
+         script adds ONLY when motion is allowed + IO is supported, so
+         reduced-motion / no-JS users always see fully-visible content. ---- */
+      html.reveal-ready :where(
+        .hero .site-title,
+        .hero .hero-logo-wrap,
+        .hero .hero-copy,
+        .section h2,
+        .section .mission-statement,
+        .section .lead,
+        .section .more,
+        .section .card,
+        .section .eco-logos li,
+        .posts li
+      ) {
+        opacity: 0;
+        transform: translate3d(var(--rx, 0px), var(--ry, 24px), 0);
+        transition:
+          opacity 700ms var(--ease-out),
+          transform 700ms var(--ease-out);
+        transition-delay: var(--reveal-delay, 0ms);
+      }
+      html.reveal-ready .is-visible {
+        opacity: 1;
+        transform: none;
+      }
+      /* Stagger grouped children (30-80ms steps) */
+      .cards > .card:nth-child(2) { --reveal-delay: 70ms; }
+      .cards > .card:nth-child(3) { --reveal-delay: 140ms; }
+      .cards > .card:nth-child(4) { --reveal-delay: 210ms; }
+      .posts li:nth-child(2) { --reveal-delay: 60ms; }
+      .posts li:nth-child(3) { --reveal-delay: 120ms; }
+      .posts li:nth-child(4) { --reveal-delay: 180ms; }
+      .posts li:nth-child(5) { --reveal-delay: 240ms; }
+      .eco-logos li:nth-child(2) { --reveal-delay: 70ms; }
+      .eco-logos li:nth-child(3) { --reveal-delay: 140ms; }
+      .eco-logos li:nth-child(4) { --reveal-delay: 210ms; }
+
+      /* Directional entrances — content glides in from the sides,
+         headings rise. (--rx/--ry feed the reveal transform above.) */
+      .hero .hero-logo-wrap { --rx: -56px; --ry: 0px; }
+      .hero .hero-copy { --rx: 56px; --ry: 0px; }
+      .cards > .card { --ry: 0px; }
+      .cards > .card:nth-child(odd) { --rx: -52px; }
+      .cards > .card:nth-child(even) { --rx: 52px; }
+      .posts li { --rx: -40px; --ry: 0px; }
+      @media (max-width: 880px) {
+        .hero .hero-logo-wrap { --rx: -28px; }
+        .hero .hero-copy { --rx: 28px; }
+        .cards > .card:nth-child(odd) { --rx: -28px; }
+        .cards > .card:nth-child(even) { --rx: 28px; }
+        .posts li { --rx: -28px; }
+      }
+
+      /* Section headings draw a small brand underline as they reveal */
+      .section h2 { position: relative; }
+      .section h2::after {
+        content: "";
+        display: block;
+        width: 48px;
+        height: 3px;
+        margin: 0.6rem auto 0;
+        border-radius: 3px;
+        background: var(--dps-gradient);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 520ms var(--ease-out) 140ms;
+      }
+      html.reveal-ready .section h2.is-visible::after { transform: scaleX(1); }
+      html:not(.reveal-ready) .section h2::after { transform: scaleX(1); }
+
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
+      html { scroll-behavior: smooth; overflow-x: clip; }
       body {
         margin: 0;
         font-family: var(--dps-font);
@@ -395,6 +553,21 @@ const posts = (await getCollection("docs"))
         font-size: 0.95rem;
       }
       .links a:hover { color: var(--accent-strong); }
+      @media (min-width: 881px) and (hover: hover) and (pointer: fine) {
+        .links a { position: relative; }
+        .links a::after {
+          content: "";
+          position: absolute;
+          left: 0; right: 0; bottom: -6px;
+          height: 2px;
+          border-radius: 2px;
+          background: var(--accent);
+          transform: scaleX(0);
+          transform-origin: left center;
+          transition: transform 220ms var(--ease-out);
+        }
+        .links a:hover::after { transform: scaleX(1); }
+      }
       .theme-toggle {
         display: inline-grid;
         place-items: center;
@@ -416,9 +589,11 @@ const posts = (await getCollection("docs"))
         width: 36px; height: 36px;
         border-radius: 999px;
         color: var(--text-muted);
-        transition: color 0.15s ease, background 0.15s ease;
+        transition: color 0.15s ease, background 0.15s ease, transform 160ms var(--ease-out);
       }
       .icon-btn:hover { color: var(--accent-strong); background: rgba(127, 127, 127, 0.12); }
+      .theme-toggle, .menu-toggle { transition: transform 160ms var(--ease-out); }
+      .icon-btn:active, .theme-toggle:active, .menu-toggle:active { transform: scale(0.94); }
 
       /* Hide brand wordmark on very small screens to make room for icons */
       @media (max-width: 420px) {
@@ -472,9 +647,11 @@ const posts = (await getCollection("docs"))
       .site-title {
         text-align: center;
         margin: 0 0 clamp(1rem, 3vw, 2rem);
-        font-size: clamp(2.4rem, 6vw, 4.5rem);
-        line-height: 1.05;
-        letter-spacing: -0.01em;
+        font-size: clamp(2.4rem, 6vw, 4.4rem);
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        font-weight: 800;
+        color: var(--text);
       }
       .hero-row {
         display: flex;
@@ -483,12 +660,23 @@ const posts = (await getCollection("docs"))
         gap: clamp(1rem, 4vw, 3rem);
         flex-wrap: wrap;
       }
+      .hero-logo-wrap {
+        flex: 0 1 360px;
+        width: min(360px, 72vw);
+      }
       .hero-logo {
-        width: min(480px, 90vw);
+        display: block;
+        width: 100%;
         height: auto;
-        flex: 0 1 480px;
-        border-radius: var(--hero-radius);
-        box-shadow: var(--hero-shadow);
+        filter: drop-shadow(0 16px 38px rgba(13, 17, 23, 0.28));
+      }
+      /* Inky gently breathes — decorative, disabled under reduced motion */
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-logo { animation: float 8s var(--ease-in-out) infinite; }
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
       }
       .hero-copy { flex: 1 1 340px; min-width: min(100%, 300px); text-align: left; }
       .tagline {
@@ -505,17 +693,78 @@ const posts = (await getCollection("docs"))
       }
       .btn {
         display: inline-block;
-        padding: 0.7rem 1.4rem;
-        border-radius: 999px;
+        padding: 0.72rem 1.4rem;
+        border-radius: 10px;
         font-weight: 600;
         text-decoration: none;
-        border: 1.5px solid var(--accent);
-        color: var(--accent-strong);
+        border: 1px solid var(--card-border);
+        color: var(--text);
         background: transparent;
-        transition: transform 0.08s ease, box-shadow 0.15s ease;
+        transition: transform 160ms var(--ease-out), box-shadow 180ms ease, border-color 180ms ease, filter 180ms ease;
       }
-      .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(31, 122, 140, 0.18); }
+      @media (hover: hover) and (pointer: fine) {
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(17, 19, 26, 0.08); border-color: var(--accent); }
+      }
+      .btn:active { transform: scale(0.97); }
       .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+      .btn.primary:hover { filter: brightness(1.06); }
+
+      /* Capability badges (ui-pro-magic: built to the locked design system) */
+      .badges {
+        list-style: none;
+        margin: 1.5rem 0 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      @media (max-width: 880px) { .badges { justify-content: center; } }
+      .badges li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.34rem 0.72rem;
+        border: 1px solid var(--card-border);
+        border-radius: 999px;
+        background: var(--card-bg);
+        color: var(--text-muted);
+        font-family: var(--dps-font-display);
+        font-weight: 600;
+        font-size: 0.8rem;
+        line-height: 1;
+        transition:
+          color 200ms var(--ease-out),
+          border-color 200ms var(--ease-out),
+          background 200ms var(--ease-out);
+      }
+      .badges li svg { color: var(--accent); flex-shrink: 0; }
+      @media (hover: hover) and (pointer: fine) {
+        .badges li:hover { color: var(--text); border-color: var(--accent); }
+      }
+
+      /* Ecosystem logo cloud (Magic logo_search: verified brand SVGs) */
+      .eco-logos {
+        list-style: none;
+        margin: 2.2rem auto 0;
+        padding: 0;
+        max-width: 760px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(1.6rem, 5vw, 3.25rem);
+      }
+      .eco-logos li { display: inline-flex; }
+      .eco-logos svg {
+        height: 30px;
+        width: auto;
+        color: var(--text-muted);
+        filter: grayscale(1) opacity(0.66);
+        transition: filter 240ms var(--ease-out), color 240ms var(--ease-out), transform 240ms var(--ease-out);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .eco-logos li:hover svg { filter: grayscale(0) opacity(1); color: var(--text); transform: translateY(-2px); }
+      }
 
       /* Sections — full-bleed alternating background bands */
       .section {
@@ -569,13 +818,17 @@ const posts = (await getCollection("docs"))
         background: var(--card-bg);
         border: 1px solid var(--card-border);
         border-radius: var(--dps-radius);
-        padding: 1.4rem;
+        padding: 1.5rem;
         text-align: left;
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+        transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 220ms var(--ease-out);
       }
-      .card h3 { margin: 0; color: var(--accent-strong); }
+      @media (hover: hover) and (pointer: fine) {
+        .card:hover { transform: translateY(-2px); box-shadow: var(--dps-shadow); border-color: var(--card-border-hover); }
+      }
+      .card h3 { margin: 0; color: var(--text); }
       .card p { margin: 0; color: var(--text-muted); line-height: 1.55; }
       .card.placeholder { background: transparent; border-style: dashed; }
       .card.project h3 { color: var(--text); }

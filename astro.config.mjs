@@ -5,6 +5,12 @@ import starlight from "@astrojs/starlight";
 // https://astro.build/config
 export default defineConfig({
   site: "https://dataprivacystack.org",
+  // Allow the public Dev Tunnel host to reach the dev/preview server
+  // (Vite blocks unknown hosts by default).
+  vite: {
+    server: { allowedHosts: true },
+    preview: { allowedHosts: true },
+  },
   integrations: [
     starlight({
       title: "Data Privacy Stack",
@@ -24,15 +30,16 @@ export default defineConfig({
           // Default to dark regardless of OS; only an explicit toggle overrides it.
           tag: "script",
           content:
-            'try{var t=localStorage.getItem("starlight-theme");if(t!=="light"&&t!=="dark"){t="dark";localStorage.setItem("starlight-theme",t)}document.documentElement.dataset.theme=t}catch(e){}',
+            'try{var t=localStorage.getItem("starlight-theme");if(t!=="light"&&t!=="dark"){t="light";localStorage.setItem("starlight-theme",t)}document.documentElement.dataset.theme=t}catch(e){}',
         },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true } },
+        { tag: "link", attrs: { rel: "apple-touch-icon", href: "/apple-touch-icon.png" } },
         {
           tag: "link",
           attrs: {
             rel: "stylesheet",
-            href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+            href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap",
           },
         },
       ],
