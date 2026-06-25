@@ -38,7 +38,7 @@ const posts = (await getCollection("docs"))
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <meta property="og:title" content="Data Privacy Stack" />
@@ -559,6 +559,18 @@ const posts = (await getCollection("docs"))
       }
       a { color: var(--accent-strong); }
 
+      /* Keyboard focus: visible accent ring on all interactive elements */
+      a:focus-visible,
+      button:focus-visible,
+      .btn:focus-visible,
+      .icon-btn:focus-visible,
+      .theme-toggle:focus-visible,
+      .menu-toggle:focus-visible,
+      summary:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
       /* Nav */
       .nav {
         position: sticky;
@@ -784,15 +796,19 @@ const posts = (await getCollection("docs"))
         .hero-copy { text-align: center; }
         .cta { justify-content: center; }
       }
-      /* Phone: compact the hero so the CTA + badges are visible without a long scroll */
+      /* Phone: a clean vertical stack where the title leads and the mascot is a
+         supporting accent, with room to breathe between each element. */
       @media (max-width: 600px) {
-        .hero { padding-top: 0.3rem; padding-bottom: 1.2rem; }
-        .site-title { font-size: clamp(1.8rem, 8vw, 2.4rem); margin-bottom: 0.6rem; }
-        .hero-row { gap: 0.7rem; }
-        .hero-logo-wrap { width: min(150px, 40vw); }
+        .hero { padding-top: 1.4rem; padding-bottom: 1.6rem; }
+        .site-title { font-size: clamp(2.15rem, 9.5vw, 2.9rem); margin-bottom: 1rem; }
+        .hero-row { gap: 1.1rem; }
+        /* The base rule's flex-basis (300px) would otherwise override width and
+           keep the mascot oversized once it wraps onto its own row — reset the
+           basis so the width below actually takes effect. */
+        .hero-logo-wrap { flex: 0 0 auto; width: clamp(116px, 33vw, 140px); }
         .tagline { font-size: clamp(1.1rem, 5.2vw, 1.4rem); }
-        .cta { margin-top: 0.9rem; }
-        .badges { margin-top: 1rem; }
+        .cta { margin-top: 1.2rem; }
+        .badges { margin-top: 1.5rem; }
       }
       .btn {
         display: inline-block;
@@ -809,8 +825,8 @@ const posts = (await getCollection("docs"))
         .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(17, 19, 26, 0.08); border-color: var(--accent); }
       }
       .btn:active { transform: scale(0.97); }
-      .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-      .btn.primary:hover { filter: brightness(1.06); }
+      .btn.primary { background: var(--dps-gradient); color: #fff; border-color: transparent; }
+      .btn.primary:hover { filter: brightness(1.05); }
 
       /* Capability badges (ui-pro-magic: built to the locked design system) */
       .badges {
@@ -881,13 +897,18 @@ const posts = (await getCollection("docs"))
       .section.sec-a { --sec-bg: var(--sec-a); }
       .section.sec-b { --sec-bg: var(--sec-b); }
 
-      /* Display font for headings + brand */
-      .site-title,
+      /* Display font for section headings */
       h2,
       .card h3,
-      .brand,
       .tagline {
         font-family: var(--dps-font-display);
+      }
+      /* Space Grotesk wordmark — unifies the brand name with the docs hero */
+      .site-title,
+      .brand,
+      .foot-brand strong {
+        font-family: "Space Grotesk", var(--dps-font-display);
+        letter-spacing: -0.02em;
       }
       h2 {
         font-size: clamp(1.5rem, 3vw, 2rem);
