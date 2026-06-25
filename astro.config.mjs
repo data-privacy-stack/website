@@ -34,7 +34,7 @@ export default defineConfig({
         },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true } },
-        { tag: "link", attrs: { rel: "icon", type: "image/svg+xml", href: "/inkey-icon.svg?v=2" } },
+        { tag: "link", attrs: { rel: "icon", type: "image/svg+xml", href: "/inkey-icon.svg?v=asset4" } },
         { tag: "link", attrs: { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=2" } },
         {
           tag: "link",
