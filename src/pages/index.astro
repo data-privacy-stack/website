@@ -683,8 +683,8 @@ const posts = (await getCollection("docs"))
         flex-wrap: wrap;
       }
       .hero-logo-wrap {
-        flex: 0 1 400px;
-        width: min(400px, 78vw);
+        flex: 0 1 300px;
+        width: min(300px, 58vw);
       }
       .hero-logo-frame {
         position: relative;
@@ -703,17 +703,20 @@ const posts = (await getCollection("docs"))
          It's a filter on the image itself, so it floats 1:1 with Inky. */
       :root[data-theme="dark"] .hero-logo {
         filter:
-          drop-shadow(0 0 1.4px #fff) drop-shadow(0 0 1.4px #fff)
-          drop-shadow(0 0 1.4px #fff) drop-shadow(0 0 1.4px #fff)
-          drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+          drop-shadow(0 0 1.3px #fff) drop-shadow(0 0 1.3px #fff)
+          drop-shadow(0 0 1.3px #fff) drop-shadow(0 0 1.3px #fff)
+          drop-shadow(0 0 12px rgba(0, 0, 0, 0.45));
       }
       /* Eyelid overlay — same viewBox as the body, so it registers exactly
-         over the eye and floats with the frame. */
+         over the eye and floats with the frame. aspect-ratio pins its height
+         so Safari can't mis-size it from the width/height attributes. */
       .hero-eyelid {
         position: absolute;
-        inset: 0;
+        top: 0;
+        left: 0;
         width: 100%;
         height: auto;
+        aspect-ratio: 602 / 680;
         pointer-events: none;
         z-index: 1;
       }
@@ -754,7 +757,7 @@ const posts = (await getCollection("docs"))
         .hero { padding-top: 0.3rem; padding-bottom: 1.2rem; }
         .site-title { font-size: clamp(1.8rem, 8vw, 2.4rem); margin-bottom: 0.6rem; }
         .hero-row { gap: 0.7rem; }
-        .hero-logo-wrap { width: min(210px, 48vw); }
+        .hero-logo-wrap { width: min(150px, 40vw); }
         .tagline { font-size: clamp(1.1rem, 5.2vw, 1.4rem); }
         .cta { margin-top: 0.9rem; }
         .badges { margin-top: 1rem; }
