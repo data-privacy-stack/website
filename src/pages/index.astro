@@ -32,7 +32,7 @@ const posts = (await getCollection("docs"))
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data Privacy Stack - open, transparent tools for private data handling</title>
     <meta name="description" content="Open, transparent tools for private data handling." />
-    <link rel="icon" type="image/svg+xml" href="/inkey-icon.svg?v=2" />
+    <link rel="icon" type="image/svg+xml" href="/inkey-favicon.svg?v=1" />
     <link rel="icon" href="/favicon.png?v=2" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -64,6 +64,12 @@ const posts = (await getCollection("docs"))
           ) {
             document.documentElement.classList.add("reveal-ready");
           }
+          // ~30% of page loads, Inky shows its smile (mouth); otherwise it
+          // loads mouth-closed. Picked once and kept for the visit. Set before
+          // paint to avoid a flash.
+          if (Math.random() < 0.3) {
+            document.documentElement.classList.add("inky-mouth");
+          }
         } catch (e) {}
       })();
     </script>
@@ -71,7 +77,7 @@ const posts = (await getCollection("docs"))
   <body>
     <header class="nav">
       <a class="brand" href="#top">
-        <img class="brand-mark" src="/inkey-icon.svg?v=2" alt="" width="28" height="28" aria-hidden="true" />
+        <img class="brand-mark" src="/inkey-favicon.svg?v=1" alt="" width="28" height="28" aria-hidden="true" />
         <span class="brand-label">Data Privacy Stack</span>
       </a>
       <nav id="nav-links" class="links">
@@ -108,32 +114,42 @@ const posts = (await getCollection("docs"))
             <div class="hero-logo-frame">
               <img
                 class="hero-logo"
-                src="/inkey.svg?v=nospots-2"
+                src="/inkey.svg?v=purple-1"
                 alt="Data Privacy Stack octopus mascot"
-                width="602"
-                height="680"
+                width="2584"
+                height="3052"
                 loading="eager"
                 decoding="async"
               />
+              <img
+                class="hero-logo hero-logo-mouth"
+                src="/inkey-mouth.svg?v=purple-1"
+                alt=""
+                width="2584"
+                height="3052"
+                loading="eager"
+                decoding="async"
+                aria-hidden="true"
+              />
               <svg
                 class="hero-eyelid"
-                viewBox="313 17 602 680"
-                width="602"
-                height="680"
+                viewBox="200 20 2584 3052"
+                width="2584"
+                height="3052"
                 aria-hidden="true"
                 focusable="false"
               >
                 <defs>
-                  <clipPath id="inkyLidClip"><circle cx="712" cy="253" r="74" /></clipPath>
+                  <clipPath id="inkyLidClip"><circle cx="1928" cy="1022" r="312" /></clipPath>
                   <linearGradient id="inkyLidGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#0b7df8" />
-                    <stop offset="0.55" stop-color="#1b4ff6" />
-                    <stop offset="1" stop-color="#3328f6" />
+                    <stop offset="0" stop-color="#88b4ef" />
+                    <stop offset="0.55" stop-color="#8a93ea" />
+                    <stop offset="1" stop-color="#8e86e8" />
                   </linearGradient>
                 </defs>
                 <g clip-path="url(#inkyLidClip)">
-                  <rect class="hero-eyelid-lid" x="636" y="176" width="152" height="156" fill="url(#inkyLidGrad)" />
-                  <rect class="hero-eyelid-lid" x="636" y="176" width="152" height="9" fill="#062a73" opacity="0.5" />
+                  <rect class="hero-eyelid-lid" x="1616" y="710" width="624" height="624" fill="url(#inkyLidGrad)" />
+                  <rect class="hero-eyelid-lid" x="1616" y="710" width="624" height="34" fill="#2a1a55" opacity="0.5" />
                 </g>
               </svg>
             </div>
@@ -312,7 +328,7 @@ const posts = (await getCollection("docs"))
       <div class="foot-cols">
         <div class="foot-brand">
           <div class="foot-brandline">
-            <img class="brand-mark" src="/inkey-icon.svg?v=2" alt="" width="28" height="28" aria-hidden="true" />
+            <img class="brand-mark" src="/inkey-favicon.svg?v=1" alt="" width="28" height="28" aria-hidden="true" />
             <strong>Data Privacy Stack</strong>
           </div>
           <p>Open, transparent tools for private data handling.</p>
@@ -697,6 +713,20 @@ const posts = (await getCollection("docs"))
         height: auto;
         filter: drop-shadow(0 16px 38px rgba(13, 17, 23, 0.28));
       }
+      /* The with-mouth version sits exactly over the no-mouth base (identical
+         silhouette, only the mouth differs) and cross-fades in periodically so
+         Inky breaks into a little smile. */
+      .hero-logo-mouth {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+      }
+      /* On ~30% of loads (tagged .inky-mouth) Inky shows its smile; the choice
+         is made once at load and kept static for the visit. */
+      :root.inky-mouth .hero-logo-mouth {
+        opacity: 1;
+      }
       /* Dark mode: a uniform white outline so Inky reads against the dark
          page. Stacked 0-offset white shadows give an even width all around
          (unlike scale(), which is thick far from center and thin near it).
@@ -716,7 +746,7 @@ const posts = (await getCollection("docs"))
         left: 0;
         width: 100%;
         height: auto;
-        aspect-ratio: 602 / 680;
+        aspect-ratio: 2584 / 3052;
         pointer-events: none;
         z-index: 1;
       }
@@ -725,8 +755,10 @@ const posts = (await getCollection("docs"))
         transform-origin: center top;
         transform: scaleY(0); /* eye open by default */
       }
-      /* Inky gently breathes, and blinks every 30s — decorative, disabled
-         under reduced motion. */
+      /* Inky gently breathes, blinks every 30s, and smiles every ~9s —
+         decorative, all disabled under reduced motion. */
+      /* Inky gently breathes and blinks every 30s — decorative, disabled
+         under reduced motion. The mouth state is fixed per load (see above). */
       @media (prefers-reduced-motion: no-preference) {
         .hero-logo-frame { animation: float 8s var(--ease-in-out) infinite; }
         .hero-eyelid-lid { animation: inky-blink 30s ease-in-out infinite; }

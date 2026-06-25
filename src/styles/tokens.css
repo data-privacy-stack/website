@@ -10,6 +10,7 @@
   --dps-indigo: #4f46e5;     /* primary accent */
   --dps-indigo-dark: #4338ca;
   --dps-violet: #7c3aed;     /* secondary, used sparingly */
+  --dps-violet-bright: #8957e8; /* mascot body violet — decorative accents */
   --dps-cyan: #22d3ee;
   --dps-muted: #5b6472;
   --dps-bg: #fbfbfd;         /* page canvas */
@@ -40,8 +41,8 @@
 
 /* Shared brand variables used by the custom landing page */
 :root {
-  /* Subtle indigo→violet, reserved for tiny accents (the octopus carries colour) */
-  --dps-gradient: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  /* Mascot-matched blue-highlight → violet-body, reserved for tiny accents (the octopus carries colour) */
+  --dps-gradient: linear-gradient(135deg, #7c8be8 0%, #8957e8 100%);
   --dps-radius: 14px;
   --dps-shadow: 0 1px 2px rgba(17, 19, 26, 0.04), 0 14px 34px rgba(17, 19, 26, 0.09);
   --dps-font: "Inter", "Segoe UI", "Helvetica Neue", sans-serif;
