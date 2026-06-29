@@ -38,7 +38,7 @@ const posts = (await getCollection("docs"))
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <meta property="og:title" content="Data Privacy Stack" />
@@ -909,6 +909,11 @@ const posts = (await getCollection("docs"))
       .foot-brand strong {
         font-family: "Space Grotesk", var(--dps-font-display);
         letter-spacing: -0.02em;
+      }
+      /* Montserrat brand title + header logo label */
+      .site-title,
+      .brand-label {
+        font-family: "Montserrat", var(--dps-font-display);
       }
       h2 {
         font-size: clamp(1.5rem, 3vw, 2rem);
