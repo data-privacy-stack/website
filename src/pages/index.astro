@@ -17,12 +17,13 @@ const principles = [
 ];
 
 const postKey = (e) => e.id ?? e.slug ?? "";
+const postOrder = (e) => e.data.sidebar?.order ?? Number.POSITIVE_INFINITY;
 const posts = (await getCollection("docs"))
   .filter((e) => {
     const k = postKey(e);
     return k.startsWith("blog/") && !k.endsWith("/index");
   })
-  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+  .sort((a, b) => postOrder(a) - postOrder(b) || a.data.title.localeCompare(b.data.title));
 ---
 
 <!doctype html>
@@ -38,13 +39,14 @@ const posts = (await getCollection("docs"))
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Montserrat:wght@600&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <meta property="og:title" content="Data Privacy Stack" />
     <meta property="og:description" content="Open, transparent tools for private data handling." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dataprivacystack.org" />
+    <script type="text/javascript" src="/clarity-consent.js" defer></script>
     <script is:inline>
       // Set theme before paint to avoid a flash. Shares Starlight's key so the
       // choice carries over to the docs/blog pages.
@@ -914,6 +916,7 @@ const posts = (await getCollection("docs"))
       .site-title,
       .brand-label {
         font-family: "Montserrat", var(--dps-font-display);
+        font-weight: 600;
       }
       h2 {
         font-size: clamp(1.5rem, 3vw, 2rem);

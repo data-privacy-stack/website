@@ -43,6 +43,7 @@ export default defineConfig({
             href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap",
           },
         },
+        { tag: "script", attrs: { type: "text/javascript", src: "/clarity-consent.js", defer: true } },
       ],
       // The marketing home lives at src/pages/index.astro (outside Starlight).
       // Everything below is Starlight-managed content with nav + search.

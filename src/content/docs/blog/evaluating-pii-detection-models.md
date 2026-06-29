@@ -1,6 +1,8 @@
 ---
 title: "Evaluating PII Detection Models: A Field Guide"
 description: Why a single accuracy number can be misleading when you choose a PII detection model - and how to evaluate one properly.
+sidebar:
+  order: 2
 ---
 
 _By Omri Mendels_

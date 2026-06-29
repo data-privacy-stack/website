@@ -2,6 +2,8 @@
 title: Welcome to the Data Privacy Stack
 description: A community home for open, transparent tools for private data handling.
 lastUpdated: 2026-06-22
+sidebar:
+  order: 3
 ---
 
 The **Data Privacy Stack** is a community-led home for open, transparent tools

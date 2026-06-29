@@ -7,6 +7,8 @@ News, releases, and notes from the Data Privacy Stack community.
 
 ## Posts
 
+- [The Presidio Project Joins Data Privacy Stack](/blog/presidio-project-joins-data-privacy-stack/) -
+  Presidio begins its next chapter under Data Privacy Stack.
 - [Evaluating PII Detection Models: A Field Guide](/blog/evaluating-pii-detection-models/) - why a
   single accuracy number can mislead when choosing a PII detection model.
 - [Welcome to the Data Privacy Stack](/blog/welcome/) - the community home for
