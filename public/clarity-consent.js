@@ -59,7 +59,7 @@
     banner.setAttribute("role", "dialog");
     banner.setAttribute("aria-label", "Cookie consent");
     banner.innerHTML =
-      '<p>This site uses cookies via Microsoft Clarity to understand how visitors use Data Privacy Stack. ' +
+      '<p>Clarity analytics cookies. ' +
       '<a href="https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-cookies" target="_blank" rel="noopener">Learn more</a></p>' +
       '<div class="consent-buttons">' +
       '<button type="button" id="cookie-consent-decline">Decline</button>' +

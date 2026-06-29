@@ -120,9 +120,30 @@
 }
 
 @media (max-width: 520px) {
-  #cookie-consent-banner,
+  #cookie-consent-banner {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 0.45rem;
+    width: auto;
+    padding: 0.45rem;
+    font-size: 0.76rem;
+    line-height: 1.25;
+    border-radius: 12px;
+  }
+
+  #cookie-consent-banner p {
+    flex: 1 1 9rem;
+  }
+
   #cookie-consent-banner .consent-buttons {
-    align-items: stretch;
-    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  #cookie-consent-banner button {
+    min-height: 40px;
+    padding: 0.35rem 0.65rem;
   }
 }
