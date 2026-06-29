@@ -21,9 +21,9 @@ export default defineConfig({
         replacesTitle: false,
       },
       favicon: "/favicon.png",
-      social: {
-        github: "https://github.com/data-privacy-stack",
-      },
+      social: [
+        { icon: "github", label: "GitHub", href: "https://github.com/data-privacy-stack" },
+      ],
       customCss: ["./src/styles/tokens.css"],
       head: [
         {
@@ -49,7 +49,7 @@ export default defineConfig({
       sidebar: [
         {
           label: "Blog",
-          autogenerate: { directory: "blog" },
+          items: [{ autogenerate: { directory: "blog" } }],
         },
         // Back to the main site
         { label: "← Data Privacy Stack", link: "/" },
