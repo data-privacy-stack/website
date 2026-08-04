@@ -43,7 +43,7 @@ Three further problems compound to make the answer harder than it looks:
 - **Token-level scoring has structural biases.** While being the simplest approach for evaluation, in token-level scoring, the format of a PII value can weight some misses more heavily than others, independent of whether the model actually detected the entity.
 - **Evaluation datasets are rarely representative.** Real PII datasets are almost never available due to privacy constraints, so practitioners fall back on open-source benchmarks (which models are often trained on) or LLM-generated synthetic data (which is unnaturally clean), both of which make models look better than they perform in production.
 
-This post walks through each problem in detail, using concrete examples, and describes the evaluation framework in [presidio-research](https://github.com/microsoft/presidio-research) that addresses them.
+This post walks through each problem in detail, using concrete examples, and describes the evaluation framework in [presidio-research](https://github.com/data-privacy-stack/presidio-research) that addresses them.
 
 ## The Label Vocabulary Problem
 
@@ -239,7 +239,7 @@ Does the model find PII, with the right type, within a reasonable boundary toler
 
 ---
 
-The evaluation framework described here is part of [microsoft/presidio-research](https://github.com/microsoft/presidio-research).
+The evaluation framework described here is part of [data-privacy-stack/presidio-research](https://github.com/data-privacy-stack/presidio-research).
 
 This work was done jointly with the amazing Presidio team: Sharon Hart, Coby Peled, Nava Vaisman Levy, Noa Gruber Uziely, Ron Shakutai, and many other contributors.
 
