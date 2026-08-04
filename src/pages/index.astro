@@ -5,6 +5,8 @@ import { getCollection } from "astro:content";
 const githubOrg = "https://github.com/data-privacy-stack";
 const presidioDocs = "https://presidio.dataprivacystack.org";
 const presidioRepo = "https://github.com/data-privacy-stack/presidio";
+const presidioResearchDocs = "https://presidio-research.dataprivacystack.org";
+const presidioResearchRepo = "https://github.com/data-privacy-stack/presidio-research";
 const mvgRepo = "https://github.com/data-privacy-stack/MVG";
 const discordUrl = "https://discord.gg/MewtBGFquB";
 const contactEmail = "contact@dataprivacystack.org";
@@ -198,7 +200,8 @@ const posts = (await getCollection("docs"))
         <p class="lead">
           The Data Privacy Stack is a community-led home for open, transparent tools that
           help engineers handle private data responsibly - starting with
-          <strong>Presidio</strong> for PII detection and anonymization, with room to grow.
+          <strong>Presidio</strong> for PII detection and anonymization and
+          <strong>Presidio Research</strong> for evaluating detection models, with room to grow.
         </p>
         <h2>Guiding principles</h2>
         <div class="cards">
@@ -223,6 +226,17 @@ const posts = (await getCollection("docs"))
               <a class="primary" href={presidioDocs}>Docs&nbsp;→</a>
               <a href={presidioRepo}>GitHub</a>
               <a href="https://pypi.org/project/presidio-analyzer/">PyPI</a>
+            </div>
+          </article>
+          <article class="card project">
+            <h3>Presidio Research</h3>
+            <p>Evaluate PII detection models and generate synthetic PII data - a
+              framework for benchmarking Presidio and NER models, with a fake-data
+              generator for building labelled datasets.</p>
+            <div class="card-links">
+              <a class="primary" href={presidioResearchDocs}>Docs&nbsp;→</a>
+              <a href={presidioResearchRepo}>GitHub</a>
+              <a href="https://pypi.org/project/presidio-evaluator/">PyPI</a>
             </div>
           </article>
           <article class="card placeholder">
@@ -352,6 +366,8 @@ const posts = (await getCollection("docs"))
           <a href={presidioDocs}>Presidio docs</a>
           <a href={presidioRepo}>Presidio on GitHub</a>
           <a href="https://pypi.org/project/presidio-analyzer/">Presidio on PyPI</a>
+          <a href={presidioResearchDocs}>Presidio Research docs</a>
+          <a href={presidioResearchRepo}>Presidio Research on GitHub</a>
         </div>
 
         <div class="foot-col">
